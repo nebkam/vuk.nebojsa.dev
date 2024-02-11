@@ -9,14 +9,7 @@
       <mat-icon svgIcon="wolf" (click)="sidenav.open()"></mat-icon>
       <span class="spacer"></span>
 
-      <button *ngIf="sound.isMuted(); else notMuted" mat-icon-button (click)="sound.unmute()">
-        <mat-icon>volume_off</mat-icon>
-      </button>
-      <ng-template #notMuted>
-        <button mat-icon-button (click)="sound.mute()">
-          <mat-icon>volume_up</mat-icon>
-        </button>
-      </ng-template>
+      <app-sound-toggle></app-sound-toggle>
     </mat-toolbar>
     <router-outlet />
   </mat-sidenav-content>

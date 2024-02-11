@@ -5,9 +5,8 @@ import {MatIcon, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {MatNavList} from "@angular/material/list";
-import {MatAnchor, MatIconButton} from "@angular/material/button";
-import {SoundService} from "./sound.service";
-import {NgIf} from "@angular/common";
+import {MatAnchor} from "@angular/material/button";
+import {SoundToggleComponent} from "./sound-toggle/sound-toggle.component";
 
 @Component({
   selector: 'app-root',
@@ -15,15 +14,14 @@ import {NgIf} from "@angular/common";
   imports: [
     MatAnchor,
     MatIcon,
-    MatIconButton,
     MatNavList,
     MatSidenav,
     MatSidenavContainer,
     MatSidenavContent,
     MatToolbar,
-    NgIf,
     RouterLink,
     RouterOutlet,
+    SoundToggleComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -33,8 +31,7 @@ export class AppComponent {
 
   constructor(
     private domSanitizer: DomSanitizer,
-    private matIconRegistry: MatIconRegistry,
-    public sound: SoundService
+    private matIconRegistry: MatIconRegistry
   ) {
     this.matIconRegistry.addSvgIcon(
       'wolf',
