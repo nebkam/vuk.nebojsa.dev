@@ -26,9 +26,11 @@
       <button mat-flat-button (click)="markAsFalse()">
         Нетачно
       </button>
-      <button mat-flat-button color="primary" (click)="markAsCorrect()">
+      <button mat-flat-button color="primary" (click)="successSound.play(); markAsCorrect();">
         Тачно
       </button>
     </ng-container>
   </mat-card-actions>
 </mat-card>
+
+<audio #successSound src="/assets/success.mp3"></audio>
