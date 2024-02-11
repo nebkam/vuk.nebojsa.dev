@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
-import {MatCard, MatCardActions, MatCardContent, MatCardFooter} from "@angular/material/card";
+import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {shuffle} from "../array";
 import {NgIf} from "@angular/common";
 
@@ -19,7 +19,6 @@ enum Stage {
     MatCard,
     MatCardActions,
     MatCardContent,
-    MatCardFooter,
   ],
   templateUrl: './letters.component.html',
   styleUrl: './letters.component.css'
