@@ -1,1 +1,26 @@
-<p>letters works!</p>
+<mat-card>
+  <mat-card-content>
+    <ng-container *ngIf="stage == Stage.Playing">
+      <p>{{letter}}</p>
+    </ng-container>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <ng-container *ngIf="stage == Stage.Start">
+      <button mat-raised-button color="primary" (click)="start()">
+        Почни
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="stage == Stage.Playing">
+      <button mat-flat-button (click)="markAsFalse()">
+        Нетачно
+      </button>
+      <button mat-flat-button color="primary" (click)="markAsCorrect()">
+        Тачно
+      </button>
+    </ng-container>
+  </mat-card-actions>
+
+  <mat-card-footer>Points: {{points}}</mat-card-footer>
+</mat-card>
