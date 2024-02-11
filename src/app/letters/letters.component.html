@@ -1,7 +1,12 @@
 <mat-card>
   <mat-card-content>
     <ng-container *ngIf="stage == Stage.Playing">
-      <div class="letter">{{letter}}</div>
+      <h1>{{ letter }}</h1>
+    </ng-container>
+
+    <ng-container *ngIf="stage == Stage.End">
+      <h2>{{ points }}/{{ letters.length }}</h2>
+      <h3>{{misses.join(', ')}}</h3>
     </ng-container>
   </mat-card-content>
 
