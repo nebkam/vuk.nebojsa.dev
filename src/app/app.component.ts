@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {MatToolbar} from "@angular/material/toolbar";
-import {MatIcon, MatIconRegistry} from "@angular/material/icon";
-import {DomSanitizer} from "@angular/platform-browser";
+import {MatIcon} from "@angular/material/icon";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {MatNavList} from "@angular/material/list";
 import {MatAnchor} from "@angular/material/button";
 import {SoundToggleComponent} from "./sound-toggle/sound-toggle.component";
+import {CustomMatIconRegistryService} from "./custom-mat-icon-registry.service";
 
 @Component({
   selector: 'app-root',
@@ -30,12 +30,7 @@ export class AppComponent {
   title = 'vuk';
 
   constructor(
-    private domSanitizer: DomSanitizer,
-    private matIconRegistry: MatIconRegistry
+    private customMatIconRegistry: CustomMatIconRegistryService
   ) {
-    this.matIconRegistry.addSvgIcon(
-      'wolf',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/wolf.svg')
-    );
   }
 }
