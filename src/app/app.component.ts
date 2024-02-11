@@ -5,7 +5,9 @@ import {MatIcon, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {MatNavList} from "@angular/material/list";
-import {MatAnchor} from "@angular/material/button";
+import {MatAnchor, MatIconButton} from "@angular/material/button";
+import {SoundService} from "./sound.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -13,11 +15,13 @@ import {MatAnchor} from "@angular/material/button";
   imports: [
     MatAnchor,
     MatIcon,
+    MatIconButton,
     MatNavList,
     MatSidenav,
     MatSidenavContainer,
     MatSidenavContent,
     MatToolbar,
+    NgIf,
     RouterLink,
     RouterOutlet,
   ],
@@ -29,7 +33,8 @@ export class AppComponent {
 
   constructor(
     private domSanitizer: DomSanitizer,
-    private matIconRegistry: MatIconRegistry
+    private matIconRegistry: MatIconRegistry,
+    public sound: SoundService
   ) {
     this.matIconRegistry.addSvgIcon(
       'wolf',

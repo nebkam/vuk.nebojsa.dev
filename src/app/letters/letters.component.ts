@@ -3,6 +3,7 @@ import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {shuffle} from "../array";
 import {NgIf} from "@angular/common";
+import {SoundService} from "../sound.service";
 
 enum Stage {
   Start,
@@ -38,7 +39,7 @@ export class LettersComponent {
 
   @ViewChild('successSound', {static: true}) successSound!: ElementRef<HTMLAudioElement>;
 
-  constructor() {
+  constructor(private sound: SoundService) {
   }
 
   start() {
@@ -63,8 +64,10 @@ export class LettersComponent {
   }
 
   private playSuccessSound(){
-    // noinspection JSIgnoredPromiseFromCall
-    this.successSound.nativeElement.play();
+    if (!this.sound.isMuted()) {
+      // noinspection JSIgnoredPromiseFromCall
+      this.successSound.nativeElement.play();
+    }
   }
 
   private showNextLetter(increment: boolean = true) {
