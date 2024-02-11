@@ -30,7 +30,7 @@ export class LettersComponent {
   points = 0;
   stage = Stage.Start;
 
-  readonly letters = [
+  private readonly letters = [
     'А', 'Б', 'В', 'Г', 'Д', 'Ђ', 'Е', 'Ж', 'З', 'И', 'Ј', 'К', 'Л', 'Љ', 'М', 'Н',
     'Њ', 'О', 'П', 'Р', 'С', 'Т', 'Ћ', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Џ', 'Ш'
   ];
@@ -69,5 +69,9 @@ export class LettersComponent {
       this.letterIndex++;
     }
     this.letter = this.letters[this.letterIndex];
+  }
+
+  isMaximum(): boolean {
+    return this.points === this.letters.length;
   }
 }

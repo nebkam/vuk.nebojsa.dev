@@ -5,8 +5,13 @@
     </ng-container>
 
     <ng-container *ngIf="stage == Stage.End">
-      <h2>{{ points }}/{{ letters.length }}</h2>
-      <h3>{{misses.join(', ')}}</h3>
+      <ng-container *ngIf="isMaximum(); else needsImprovement">
+        <h2>Браво!</h2>
+      </ng-container>
+      <ng-template #needsImprovement>
+        <h2>{{ points }}</h2>
+        <h3>{{misses.join(', ')}}</h3>
+      </ng-template>
     </ng-container>
   </mat-card-content>
 
