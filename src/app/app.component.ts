@@ -1,15 +1,24 @@
 import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
+import {MatNavList} from "@angular/material/list";
+import {MatAnchor} from "@angular/material/button";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    MatAnchor,
     MatIcon,
+    MatNavList,
+    MatSidenav,
+    MatSidenavContainer,
+    MatSidenavContent,
     MatToolbar,
+    RouterLink,
     RouterOutlet,
   ],
   templateUrl: './app.component.html',

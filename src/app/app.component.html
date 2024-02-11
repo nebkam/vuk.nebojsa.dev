@@ -1,4 +1,13 @@
-<mat-toolbar color="primary">
-  <mat-icon svgIcon="wolf"></mat-icon>
-</mat-toolbar>
-<router-outlet />
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" (click)="sidenav.close()">
+    <mat-nav-list>
+      <a mat-button routerLink="/slova">Слова</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-icon svgIcon="wolf" (click)="sidenav.open()"></mat-icon>
+    </mat-toolbar>
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>
