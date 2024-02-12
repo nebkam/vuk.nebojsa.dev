@@ -1,5 +1,8 @@
 <mat-card>
   <mat-card-content>
-    <button mat-raised-button color="accent">Почни</button>
+    @if (stage === Stage.Start) {
+      <button mat-flat-button color="accent" (click)="start()">Почни</button>
+    }
+
   </mat-card-content>
 </mat-card>
