@@ -12,7 +12,7 @@ enum Stage {
 }
 
 @Component({
-  selector: 'app-letters',
+  selector: 'app-quess-the-letter',
   standalone: true,
   imports: [
     NgIf,
@@ -21,10 +21,10 @@ enum Stage {
     MatCardActions,
     MatCardContent,
   ],
-  templateUrl: './letters.component.html',
-  styleUrl: './letters.component.css'
+  templateUrl: './guess-the-letter.component.html',
+  styleUrl: './guess-the-letter.component.css'
 })
-export class LettersComponent {
+export class GuessTheLetterComponent {
   letter = '';
   letterIndex = 0;
   misses: string[] = [];
