@@ -12,7 +12,7 @@ enum Stage {
 }
 
 @Component({
-  selector: 'app-quess-the-letter',
+  selector: 'app-guess-the-letter',
   standalone: true,
   imports: [
     NgIf,
