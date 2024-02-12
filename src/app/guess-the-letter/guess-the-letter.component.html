@@ -1,35 +1,31 @@
 <mat-card>
   <mat-card-content>
-    @if (stage == Stage.Playing) {
-      <h1>{{ letter }}</h1>
-    }
+    @switch (stage) {
+      @case (Stage.Start) {
+        <button mat-raised-button color="primary" (click)="start()">
+          Почни
+        </button>
+      }
+      @case (Stage.Playing) {
+        <h1>{{ letter }}</h1>
 
-    @if (stage == Stage.End) {
-      @if (isMaximum()) {
-        <h2>Браво!</h2>
-      } @else {
-        <h2>{{ points }}</h2>
-        <h3>{{misses.join(', ')}}</h3>
+        <button mat-flat-button (click)="markAsFalse()">
+          Нетачно
+        </button>
+        <button mat-flat-button color="primary" (click)="markAsCorrect();">
+          Тачно
+        </button>
+      }
+      @case (Stage.End) {
+        @if (isMaximum()) {
+          <h2>Браво!</h2>
+        } @else {
+          <h2>{{ points }}</h2>
+          <h3>{{ misses.join(', ') }}</h3>
+        }
       }
     }
   </mat-card-content>
-
-  <mat-card-actions align="end">
-    @if (stage == Stage.Start) {
-      <button mat-raised-button color="primary" (click)="start()">
-        Почни
-      </button>
-    }
-
-    @if (stage == Stage.Playing) {
-      <button mat-flat-button (click)="markAsFalse()">
-        Нетачно
-      </button>
-      <button mat-flat-button color="primary" (click)="markAsCorrect();">
-        Тачно
-      </button>
-    }
-  </mat-card-actions>
 </mat-card>
 
 <audio #successSound src="/assets/success.mp3" preload="auto"></audio>
