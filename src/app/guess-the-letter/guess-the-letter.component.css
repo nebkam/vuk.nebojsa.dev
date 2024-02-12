@@ -1,6 +1,6 @@
 mat-card {
-  margin: 1em 2em;
-  padding: .5em 1em;
+  width: 90%;
+  margin: 1em auto;
   text-align: center;
 }
 h1 {
