@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
-import {NgIf} from "@angular/common";
 import {SoundService} from "../sound.service";
 
 @Component({
@@ -10,7 +9,6 @@ import {SoundService} from "../sound.service";
   imports: [
     MatIcon,
     MatIconButton,
-    NgIf
   ],
   templateUrl: './sound-toggle.component.html',
   styleUrl: './sound-toggle.component.css'

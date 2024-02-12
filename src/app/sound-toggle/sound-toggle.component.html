@@ -1,8 +1,9 @@
-<button *ngIf="sound.isMuted(); else notMuted" mat-icon-button (click)="sound.unmute()">
-  <mat-icon>volume_off</mat-icon>
-</button>
-<ng-template #notMuted>
+@if (sound.isMuted()) {
+  <button mat-icon-button (click)="sound.unmute()">
+    <mat-icon>volume_off</mat-icon>
+  </button>
+} @else {
   <button mat-icon-button (click)="sound.mute()">
     <mat-icon>volume_up</mat-icon>
   </button>
-</ng-template>
+}
