@@ -1,35 +1,34 @@
 <mat-card>
   <mat-card-content>
-    <ng-container *ngIf="stage == Stage.Playing">
+    @if (stage == Stage.Playing) {
       <h1>{{ letter }}</h1>
-    </ng-container>
+    }
 
-    <ng-container *ngIf="stage == Stage.End">
-      <ng-container *ngIf="isMaximum(); else needsImprovement">
+    @if (stage == Stage.End) {
+      @if (isMaximum()) {
         <h2>Браво!</h2>
-      </ng-container>
-      <ng-template #needsImprovement>
+      } @else {
         <h2>{{ points }}</h2>
         <h3>{{misses.join(', ')}}</h3>
-      </ng-template>
-    </ng-container>
+      }
+    }
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <ng-container *ngIf="stage == Stage.Start">
+    @if (stage == Stage.Start) {
       <button mat-raised-button color="primary" (click)="start()">
         Почни
       </button>
-    </ng-container>
+    }
 
-    <ng-container *ngIf="stage == Stage.Playing">
+    @if (stage == Stage.Playing) {
       <button mat-flat-button (click)="markAsFalse()">
         Нетачно
       </button>
       <button mat-flat-button color="primary" (click)="markAsCorrect();">
         Тачно
       </button>
-    </ng-container>
+    }
   </mat-card-actions>
 </mat-card>
 

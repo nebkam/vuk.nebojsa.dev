@@ -2,7 +2,6 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {shuffle} from "../array";
-import {NgIf} from "@angular/common";
 import {SoundService} from "../sound.service";
 
 enum Stage {
@@ -15,7 +14,6 @@ enum Stage {
   selector: 'app-guess-the-letter',
   standalone: true,
   imports: [
-    NgIf,
     MatButton,
     MatCard,
     MatCardActions,
@@ -63,7 +61,7 @@ export class GuessTheLetterComponent {
     this.stage = Stage.End;
   }
 
-  private playSuccessSound(){
+  private playSuccessSound() {
     if (!this.sound.isMuted()) {
       // noinspection JSIgnoredPromiseFromCall
       this.successSound.nativeElement.play();
