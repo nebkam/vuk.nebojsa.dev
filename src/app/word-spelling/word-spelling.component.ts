@@ -4,6 +4,7 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {shuffle} from "../array";
 import {MatIcon} from "@angular/material/icon";
 import {SoundService} from "../sound.service";
+import {NgForOf} from "@angular/common";
 
 enum Stage {
   Start,
@@ -39,6 +40,7 @@ const WORDS = [
     MatCardContent,
     MatFabButton,
     MatIcon,
+    NgForOf,
   ],
   templateUrl: './word-spelling.component.html',
   styleUrl: './word-spelling.component.css'
@@ -47,6 +49,7 @@ export class WordSpellingComponent {
   @ViewChild('wordSound', {static: false}) wordSound!: ElementRef<HTMLAudioElement>;
 
   Stage = Stage;
+  selectedLetters: string[] = [];
   stage = Stage.Start;
   wordIndex = 0;
   words: Word[] = WORDS.map(word => {
@@ -67,6 +70,10 @@ export class WordSpellingComponent {
     this.showNextWord(false);
   }
 
+  next() {
+    this.showNextWord();
+  }
+
   end() {
     this.stage = Stage.End;
   }
@@ -76,6 +83,15 @@ export class WordSpellingComponent {
       // noinspection JSIgnoredPromiseFromCall
       this.wordSound.nativeElement.play();
     }
+  }
+
+  isCorrect() {
+    return this.word?.original === this.selectedLetters.join('');
+  }
+
+  selectLetter(letter: string) {
+    this.selectedLetters.push(letter);
+    this.word?.letters.splice(this.word.letters.indexOf(letter), 1);
   }
 
   private showNextWord(increment: boolean = true) {
@@ -88,5 +104,6 @@ export class WordSpellingComponent {
       this.wordIndex++;
     }
     this.word = this.words[this.wordIndex];
+    this.selectedLetters = [];
   }
 }
