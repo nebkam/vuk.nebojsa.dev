@@ -42,7 +42,7 @@ export class GuessTheLetterComponent {
 
   start() {
     this.stage = Stage.Playing;
-    shuffle(this.letters);
+    shuffle<string>(this.letters);
     this.showNextLetter(false);
   }
 

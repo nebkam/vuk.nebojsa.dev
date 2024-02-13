@@ -2,6 +2,9 @@ mat-card {
   width: 90%;
   margin: 1em auto;
 }
-button {
+.w-100 {
   width: 100%;
+}
+.letter-button {
+  text-transform: uppercase;
 }
