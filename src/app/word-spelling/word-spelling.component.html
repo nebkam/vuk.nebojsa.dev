@@ -15,7 +15,7 @@
             <button mat-stroked-button color="primary" class="letter-button" *ngFor="let selectedLetter of selectedLetters">{{selectedLetter}}</button>
           </div>
 
-          <div>
+          <div class="suggested-letters">
             @for (letter of word.letters; track word.original) {
               <button mat-stroked-button class="letter-button" (click)="selectLetter(letter)">{{letter}}</button>
             }

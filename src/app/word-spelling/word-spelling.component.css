@@ -8,3 +8,10 @@ mat-card {
 .letter-button {
   text-transform: uppercase;
 }
+.suggested-letters {
+  display: flex;
+  flex-wrap: wrap;
+}
+.suggested-letters button {
+  margin: 0.5em;
+}
