@@ -32,8 +32,8 @@
               <button
                 *ngFor="let selectedLetter of selectedLetters"
                 (click)="deselectLetter(selectedLetter)"
-                mat-stroked-button
-                color="primary"
+                mat-raised-button
+                color="accent"
                 class="letter-button">
                 {{ selectedLetter }}
               </button>
@@ -45,7 +45,7 @@
               @for (letter of word.letters; track word.original) {
                 <button
                   (click)="selectLetter(letter)"
-                  mat-stroked-button
+                  mat-raised-button
                   class="letter-button">
                   {{ letter }}
                 </button>
