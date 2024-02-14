@@ -1,11 +1,15 @@
-<mat-card>
-  <mat-card-content>
-    @switch (stage) {
-      @case (Stage.Start) {
+@switch (stage) {
+  @case (Stage.Start) {
+    <mat-card>
+      <mat-card-content>
         <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
-      }
-      @case (Stage.Playing) {
-        @if (word) {
+      </mat-card-content>
+    </mat-card>
+  }
+  @case (Stage.Playing) {
+    @if (word) {
+      <mat-card>
+        <mat-card-content>
           <div class="playback">
             <button mat-fab (click)="playWordSound()">
               <mat-icon>volume_up</mat-icon>
@@ -35,14 +39,15 @@
               </button>
             }
           </div>
-
-          @if (isCorrect()) {
-            <button mat-flat-button color="primary" (click)="next()">Следеће</button>
-          }
-
-          <audio #wordSound src="/assets/words/{{word.sound}}" autoplay></audio>
+        </mat-card-content>
+        @if (isCorrect()) {
+          <mat-card-actions>
+            <button mat-flat-button color="primary" class="w-100" (click)="next()">Следеће</button>
+          </mat-card-actions>
         }
-      }
+      </mat-card>
+
+      <audio #wordSound src="/assets/words/{{word.sound}}" autoplay></audio>
     }
-  </mat-card-content>
-</mat-card>
+  }
+}

@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {MatCard, MatCardContent} from "@angular/material/card";
+import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {shuffle} from "../array";
 import {MatIcon} from "@angular/material/icon";
@@ -37,6 +37,7 @@ const WORDS = [
   imports: [
     MatButton,
     MatCard,
+    MatCardActions,
     MatCardContent,
     MatDivider,
     MatFabButton,
