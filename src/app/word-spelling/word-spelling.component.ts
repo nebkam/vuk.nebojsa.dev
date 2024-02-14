@@ -3,8 +3,8 @@ import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {shuffle} from "../array";
 import {MatIcon} from "@angular/material/icon";
-import {SoundService} from "../sound.service";
 import {NgForOf} from "@angular/common";
+import {MatDivider} from "@angular/material/divider";
 
 enum Stage {
   Start,
@@ -38,6 +38,7 @@ const WORDS = [
     MatButton,
     MatCard,
     MatCardContent,
+    MatDivider,
     MatFabButton,
     MatIcon,
     NgForOf,
@@ -61,7 +62,12 @@ export class WordSpellingComponent {
   });
   word: Word | null = null;
 
-  constructor(private sound: SoundService) {
+  constructor() {
+  }
+
+  deselectLetter(letter: string) {
+    this.word?.letters.push(letter);
+    this.selectedLetters.splice(this.selectedLetters.indexOf(letter), 1);
   }
 
   end() {
@@ -77,10 +83,8 @@ export class WordSpellingComponent {
   }
 
   playWordSound() {
-    if (!this.sound.isMuted()) {
-      // noinspection JSIgnoredPromiseFromCall
-      this.wordSound.nativeElement.play();
-    }
+    // noinspection JSIgnoredPromiseFromCall
+    this.wordSound.nativeElement.play();
   }
 
   selectLetter(letter: string) {

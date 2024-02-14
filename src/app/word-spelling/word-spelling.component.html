@@ -4,29 +4,41 @@
       @case (Stage.Start) {
         <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
       }
-
       @case (Stage.Playing) {
         @if (word) {
           <button mat-fab (click)="playWordSound()">
             <mat-icon>microphone</mat-icon>
           </button>
 
-          <div>
-            <button mat-stroked-button color="primary" class="letter-button" *ngFor="let selectedLetter of selectedLetters">{{selectedLetter}}</button>
+          <div class="letter-list">
+            <button
+              *ngFor="let selectedLetter of selectedLetters"
+              (click)="deselectLetter(selectedLetter)"
+              mat-stroked-button
+              color="primary"
+              class="letter-button">
+              {{ selectedLetter }}
+            </button>
           </div>
 
-          <div class="suggested-letters">
+          <mat-divider></mat-divider>
+
+          <div class="letter-list">
             @for (letter of word.letters; track word.original) {
-              <button mat-stroked-button class="letter-button" (click)="selectLetter(letter)">{{letter}}</button>
+              <button
+                (click)="selectLetter(letter)"
+                mat-stroked-button
+                class="letter-button">
+                {{ letter }}
+              </button>
             }
           </div>
 
           @if (isCorrect()) {
-            <h1>Браво!</h1>
             <button mat-flat-button color="primary" (click)="next()">Следеће</button>
           }
 
-          <audio #wordSound src="/assets/words/{{word.sound}}" preload="auto"></audio>
+          <audio #wordSound src="/assets/words/{{word.sound}}" autoplay></audio>
         }
       }
     }
