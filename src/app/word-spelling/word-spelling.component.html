@@ -1,53 +1,78 @@
-@switch (stage) {
-  @case (Stage.Start) {
-    <mat-card>
-      <mat-card-content>
-        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
-      </mat-card-content>
-    </mat-card>
-  }
-  @case (Stage.Playing) {
-    @if (word) {
+@if (sound.isMuted()) {
+  <mat-card>
+    <mat-card-content>
+      <p>
+        За ову игру је потребно да укључите звук
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" class="w-100" (click)="sound.unmute()">Укључи звук</button>
+    </mat-card-actions>
+  </mat-card>
+} @else {
+  @switch (stage) {
+    @case (Stage.Start) {
       <mat-card>
         <mat-card-content>
-          <div class="playback">
-            <button mat-fab (click)="playWordSound()">
-              <mat-icon>volume_up</mat-icon>
-            </button>
-          </div>
-
-          <div class="letter-list">
-            <button
-              *ngFor="let selectedLetter of selectedLetters"
-              (click)="deselectLetter(selectedLetter)"
-              mat-stroked-button
-              color="primary"
-              class="letter-button">
-              {{ selectedLetter }}
-            </button>
-          </div>
-
-          <mat-divider></mat-divider>
-
-          <div class="letter-list">
-            @for (letter of word.letters; track word.original) {
-              <button
-                (click)="selectLetter(letter)"
-                mat-stroked-button
-                class="letter-button">
-                {{ letter }}
-              </button>
-            }
-          </div>
+          <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
         </mat-card-content>
-        @if (isCorrect()) {
-          <mat-card-actions>
-            <button mat-flat-button color="primary" class="w-100" (click)="next()">Следеће</button>
-          </mat-card-actions>
-        }
       </mat-card>
+    }
+    @case (Stage.Playing) {
+      @if (word) {
+        <mat-card>
+          <mat-card-content>
+            <div class="playback">
+              <button mat-fab (click)="playWordSound()">
+                <mat-icon>volume_up</mat-icon>
+              </button>
+            </div>
 
-      <audio #wordSound src="/assets/words/{{word.sound}}" autoplay></audio>
+            <div class="letter-list">
+              <button
+                *ngFor="let selectedLetter of selectedLetters"
+                (click)="deselectLetter(selectedLetter)"
+                mat-stroked-button
+                color="primary"
+                class="letter-button">
+                {{ selectedLetter }}
+              </button>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="letter-list">
+              @for (letter of word.letters; track word.original) {
+                <button
+                  (click)="selectLetter(letter)"
+                  mat-stroked-button
+                  class="letter-button">
+                  {{ letter }}
+                </button>
+              }
+            </div>
+          </mat-card-content>
+          @if (isCorrect()) {
+            <mat-card-actions>
+              <button mat-flat-button color="primary" class="w-100" (click)="next()">Следећа реч</button>
+            </mat-card-actions>
+          }
+        </mat-card>
+
+        <audio #wordSound src="/assets/words/{{word.sound}}" autoplay></audio>
+      }
+    }
+    @case (Stage.End) {
+      <mat-card>
+        <mat-card-content>
+          <h1 mat-card-title>
+            <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
+          </h1>
+          <h2 mat-card-subtitle>
+            Написао си {{ words.length }} речи
+          </h2>
+        </mat-card-content>
+      </mat-card>
     }
   }
 }

@@ -1,10 +1,11 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
+import {MatCard, MatCardActions, MatCardContent, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {shuffle} from "../array";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
+import {SoundService} from "../sound.service";
 
 enum Stage {
   Start,
@@ -39,6 +40,8 @@ const WORDS = [
     MatCard,
     MatCardActions,
     MatCardContent,
+    MatCardSubtitle,
+    MatCardTitle,
     MatDivider,
     MatFabButton,
     MatIcon,
@@ -63,7 +66,7 @@ export class WordSpellingComponent {
   });
   word: Word | null = null;
 
-  constructor() {
+  constructor(public sound: SoundService) {
   }
 
   deselectLetter(letter: string) {
