@@ -6,9 +6,11 @@
       }
       @case (Stage.Playing) {
         @if (word) {
-          <button mat-fab (click)="playWordSound()">
-            <mat-icon>microphone</mat-icon>
-          </button>
+          <div class="playback">
+            <button mat-fab (click)="playWordSound()">
+              <mat-icon>volume_up</mat-icon>
+            </button>
+          </div>
 
           <div class="letter-list">
             <button
