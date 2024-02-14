@@ -64,18 +64,16 @@ export class WordSpellingComponent {
   constructor(private sound: SoundService) {
   }
 
-  start() {
-    this.stage = Stage.Playing;
-    shuffle<Word>(this.words);
-    this.showNextWord(false);
+  end() {
+    this.stage = Stage.End;
+  }
+
+  isCorrect() {
+    return this.word?.original === this.selectedLetters.join('');
   }
 
   next() {
     this.showNextWord();
-  }
-
-  end() {
-    this.stage = Stage.End;
   }
 
   playWordSound() {
@@ -85,13 +83,15 @@ export class WordSpellingComponent {
     }
   }
 
-  isCorrect() {
-    return this.word?.original === this.selectedLetters.join('');
-  }
-
   selectLetter(letter: string) {
     this.selectedLetters.push(letter);
     this.word?.letters.splice(this.word.letters.indexOf(letter), 1);
+  }
+
+  start() {
+    this.stage = Stage.Playing;
+    shuffle<Word>(this.words);
+    this.showNextWord(false);
   }
 
   private showNextWord(increment: boolean = true) {
