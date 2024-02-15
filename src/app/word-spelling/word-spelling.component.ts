@@ -6,6 +6,7 @@ import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
 import {SoundService} from "../sound.service";
+import {SpellingService} from "../spelling.service";
 
 enum Stage {
   Start,
@@ -16,7 +17,6 @@ enum Stage {
 interface Word {
   original: string;
   letters: string[];
-  sound: string;
 }
 
 const WORDS = [
@@ -59,13 +59,15 @@ export class WordSpellingComponent {
   words: Word[] = WORDS.map(word => {
     return {
       original: word,
-      letters: shuffle<string>(word.split('')),
-      sound: `${word}.mp3`
+      letters: shuffle<string>(word.split(''))
     };
   });
   word: Word | null = null;
 
-  constructor(public sound: SoundService) {
+  constructor(
+    public sound: SoundService,
+    spelling: SpellingService
+  ) {
   }
 
   deselectLetter(letter: string) {
