@@ -1,7 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {MatCard, MatCardActions, MatCardContent, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
 import {MatButton, MatFabButton} from "@angular/material/button";
-import {shuffle} from "../array";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
@@ -13,23 +12,6 @@ enum Stage {
   Playing,
   End
 }
-
-interface Word {
-  original: string;
-  letters: string[];
-}
-
-const WORDS = [
-  "девојка",
-  "звезда",
-  "ливада",
-  "мачка",
-  "океан",
-  "пролеће",
-  "срећа",
-  "љубав",
-  "љубазно"
-];
 
 @Component({
   selector: 'app-word-spelling',
@@ -53,38 +35,20 @@ export class WordSpellingComponent {
   @ViewChild('wordSound', {static: false}) wordSound!: ElementRef<HTMLAudioElement>;
 
   Stage = Stage;
-  selectedLetters: string[] = [];
   stage = Stage.Start;
-  wordIndex = 0;
-  words: Word[] = WORDS.map(word => {
-    return {
-      original: word,
-      letters: shuffle<string>(word.split(''))
-    };
-  });
-  word: Word | null = null;
 
   constructor(
     public sound: SoundService,
-    spelling: SpellingService
+    public spelling: SpellingService
   ) {
   }
 
-  deselectLetter(letter: string) {
-    this.word?.letters.push(letter);
-    this.selectedLetters.splice(this.selectedLetters.indexOf(letter), 1);
+  advance() {
+    this.spelling.nextWord() || this.end();
   }
 
   end() {
     this.stage = Stage.End;
-  }
-
-  isCorrect() {
-    return this.word?.original === this.selectedLetters.join('');
-  }
-
-  next() {
-    this.showNextWord();
   }
 
   playWordSound() {
@@ -92,27 +56,8 @@ export class WordSpellingComponent {
     this.wordSound.nativeElement.play();
   }
 
-  selectLetter(letter: string) {
-    this.selectedLetters.push(letter);
-    this.word?.letters.splice(this.word.letters.indexOf(letter), 1);
-  }
-
   start() {
     this.stage = Stage.Playing;
-    shuffle<Word>(this.words);
-    this.showNextWord(false);
-  }
-
-  private showNextWord(increment: boolean = true) {
-    if (this.wordIndex === this.words.length - 1) {
-      this.end();
-      return;
-    }
-
-    if (increment) {
-      this.wordIndex++;
-    }
-    this.word = this.words[this.wordIndex];
-    this.selectedLetters = [];
+    this.spelling.start();
   }
 }

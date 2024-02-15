@@ -19,7 +19,7 @@
       </mat-card>
     }
     @case (Stage.Playing) {
-      @if (word) {
+      @if (spelling.currentWord) {
         <mat-card>
           <mat-card-content>
             <div class="playback">
@@ -30,8 +30,8 @@
 
             <div class="letter-list">
               <button
-                *ngFor="let selectedLetter of selectedLetters"
-                (click)="deselectLetter(selectedLetter)"
+                *ngFor="let selectedLetter of spelling.selectedLetters"
+                (click)="spelling.deselectLetter(selectedLetter)"
                 mat-raised-button
                 color="accent"
                 class="letter-button">
@@ -42,9 +42,9 @@
             <mat-divider></mat-divider>
 
             <div class="letter-list">
-              @for (letter of word.letters; track word.original) {
+              @for (letter of spelling.currentWord.letters; track spelling.currentWord.original) {
                 <button
-                  (click)="selectLetter(letter)"
+                  (click)="spelling.selectLetter(letter)"
                   mat-raised-button
                   class="letter-button">
                   {{ letter }}
@@ -52,14 +52,14 @@
               }
             </div>
           </mat-card-content>
-          @if (isCorrect()) {
+          @if (spelling.isCurrentWordGuessed()) {
             <mat-card-actions>
-              <button mat-flat-button color="primary" class="w-100" (click)="next()">Следећа реч</button>
+              <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реч</button>
             </mat-card-actions>
           }
         </mat-card>
 
-        <audio #wordSound src="/assets/words/mp3/{{word.original}}.mp3" autoplay></audio>
+        <audio #wordSound src="/assets/words/mp3/{{spelling.currentWord.original}}.mp3" autoplay></audio>
       }
     }
     @case (Stage.End) {
@@ -69,7 +69,7 @@
             <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
           </h1>
           <h2 mat-card-subtitle>
-            Написао си {{ words.length }} речи
+            Написао си {{ spelling.allWords.length }} речи
           </h2>
         </mat-card-content>
       </mat-card>
