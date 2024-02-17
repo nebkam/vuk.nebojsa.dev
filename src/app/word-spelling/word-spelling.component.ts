@@ -1,5 +1,12 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {MatCard, MatCardActions, MatCardContent, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardFooter,
+  MatCardSubtitle,
+  MatCardTitle
+} from "@angular/material/card";
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
@@ -21,6 +28,7 @@ enum Stage {
     MatCard,
     MatCardActions,
     MatCardContent,
+    MatCardFooter,
     MatCardSubtitle,
     MatCardTitle,
     MatDivider,

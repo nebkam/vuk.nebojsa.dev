@@ -11,17 +11,26 @@ interface Word {
   providedIn: 'root'
 })
 export class SpellingService {
-  allWords: Word[] = WORDS.map(word => {
+  currentWord: Word | null = null;
+  selectedLetters: string[] = [];
+
+  private allWords: Word[] = WORDS.map(word => {
     return {
       original: word,
       letters: shuffle<string>(word.split(''))
     };
   });
-  currentWord: Word | null = null;
-  selectedLetters: string[] = [];
   private currentWordIndex = 0;
 
   constructor() {
+  }
+
+  get allWordsCount() {
+    return this.allWords.length;
+  }
+
+  get currentWordNumber() {
+    return this.currentWordIndex + 1;
   }
 
   deselectLetter(letter: string) {

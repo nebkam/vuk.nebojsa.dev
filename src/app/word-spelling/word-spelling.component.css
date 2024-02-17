@@ -19,3 +19,7 @@ mat-card {
   text-transform: uppercase;
   margin: .5em
 }
+mat-card-footer {
+  text-align: center;
+  padding: .5em 0;
+}

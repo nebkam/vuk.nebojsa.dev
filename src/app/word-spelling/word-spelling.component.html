@@ -57,6 +57,9 @@
               <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реч</button>
             </mat-card-actions>
           }
+          <mat-card-footer>
+            {{spelling.currentWordNumber}} / {{spelling.allWordsCount}}
+          </mat-card-footer>
         </mat-card>
 
         <audio #wordSound src="/assets/words/mp3/{{spelling.currentWord.original}}.mp3" autoplay></audio>
@@ -69,7 +72,7 @@
             <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
           </h1>
           <h2 mat-card-subtitle>
-            Написао си {{ spelling.allWords.length }} речи
+            Написао си {{ spelling.allWordsCount }} речи
           </h2>
         </mat-card-content>
       </mat-card>
