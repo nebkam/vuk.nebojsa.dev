@@ -1,1 +1,68 @@
-<p>guess-the-sentence works!</p>
+@switch (stage) {
+  @case (Stage.Start) {
+    <mat-card>
+      <mat-card-content>
+        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+      </mat-card-content>
+    </mat-card>
+  }
+  @case (Stage.Playing) {
+    @if (sentenceFactory.currentSentence) {
+      <mat-card>
+        <mat-card-content>
+          <div class="playback">
+            <button mat-fab (click)="playSentenceSound()">
+              <mat-icon>volume_up</mat-icon>
+            </button>
+          </div>
+
+          <div class="word-list">
+            <button
+              *ngFor="let selectedWord of sentenceFactory.selectedWords"
+              (click)="sentenceFactory.deselectWord(selectedWord)"
+              mat-raised-button
+              color="accent"
+              class="word-button">
+              {{ selectedWord }}
+            </button>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="word-list">
+            @for (word of sentenceFactory.currentSentence.words; track sentenceFactory.currentSentence.original) {
+              <button
+                (click)="sentenceFactory.selectWord(word)"
+                mat-raised-button
+                class="word-button">
+                {{ word }}
+              </button>
+            }
+          </div>
+        </mat-card-content>
+        @if (sentenceFactory.isCurrentSentenceGuessed()) {
+          <mat-card-actions>
+            <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реченица</button>
+          </mat-card-actions>
+        }
+        <mat-card-footer>
+          {{sentenceFactory.currentSentenceNumber}} / {{sentenceFactory.allSentencesCount}}
+        </mat-card-footer>
+      </mat-card>
+
+      <audio #sentenceSound src="/assets/sentences/mp3/{{sentenceFactory.currentSentence.original}}.mp3" autoplay></audio>
+    }
+  }
+  @case (Stage.End) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>
+          <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
+        </h1>
+        <h2 mat-card-subtitle>
+          Погодио си {{ sentenceFactory.allSentencesCount }} реченица
+        </h2>
+      </mat-card-content>
+    </mat-card>
+  }
+}

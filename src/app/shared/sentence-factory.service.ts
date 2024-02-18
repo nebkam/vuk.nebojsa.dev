@@ -16,7 +16,7 @@ export class SentenceFactoryService {
   private allSentences: Sentence[] = SENTENCES.map(sentence => {
     return {
       original: sentence,
-      words: sentence.split(' ')
+      words: shuffle<string>(sentence.split(' '))
     };
   });
   private currentSentenceIndex = 0;

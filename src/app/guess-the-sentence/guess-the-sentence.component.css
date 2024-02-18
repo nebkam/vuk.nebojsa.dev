@@ -1,0 +1,24 @@
+mat-card {
+  width: 90%;
+  margin: 1em auto;
+}
+.w-100 {
+  width: 100%;
+}
+.playback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 112px;
+}
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.word-button {
+  margin: .5em
+}
+mat-card-footer {
+  text-align: center;
+  padding: .5em 0;
+}
