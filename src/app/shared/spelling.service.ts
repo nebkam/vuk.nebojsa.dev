@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import WORDS from '../../assets/words/words.json';
-import {shuffle} from "../array";
+import {shuffle} from "./array";
 
 interface Word {
   original: string;
