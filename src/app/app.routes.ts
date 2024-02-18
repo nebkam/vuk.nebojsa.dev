@@ -4,12 +4,18 @@ import {GuessTheLetterComponent} from "./guess-the-letter/guess-the-letter.compo
 import {WordSpellingComponent} from "./word-spelling/word-spelling.component";
 import {GuessTheSentenceComponent} from "./guess-the-sentence/guess-the-sentence.component";
 
-export const routes: Routes = [{
-  path: 'pogodi-slovo', component: GuessTheLetterComponent
-}, {
-  path: 'pogodi-recenicu', component: GuessTheSentenceComponent
-},{
-  path: 'slovo-po-slovo', component: WordSpellingComponent
-}, {
-  path: '', component: HomeComponent
-}];
+export const routes: Routes = [
+  // BC
+  {
+    path: 'slovo-po-slovo', redirectTo: 'slozi-rec'
+  },
+
+  {
+    path: 'pogodi-slovo', component: GuessTheLetterComponent
+  }, {
+    path: 'slozi-recenicu', component: GuessTheSentenceComponent
+  }, {
+    path: 'slozi-rec', component: WordSpellingComponent
+  }, {
+    path: '', component: HomeComponent
+  }];
