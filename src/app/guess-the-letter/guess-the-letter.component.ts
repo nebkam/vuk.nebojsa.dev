@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {shuffle} from "../shared/array";
@@ -35,8 +35,6 @@ export class GuessTheLetterComponent {
   ];
   Stage = Stage;
 
-  @ViewChild('successSound', {static: true}) successSound!: ElementRef<HTMLAudioElement>;
-
   constructor(private sound: SoundService) {
   }
 
@@ -47,7 +45,7 @@ export class GuessTheLetterComponent {
   }
 
   markAsCorrect() {
-    this.playSuccessSound();
+    this.sound.playSuccessSound();
     this.points++;
     this.showNextLetter();
   }
@@ -59,13 +57,6 @@ export class GuessTheLetterComponent {
 
   end() {
     this.stage = Stage.End;
-  }
-
-  private playSuccessSound() {
-    if (!this.sound.isMuted()) {
-      // noinspection JSIgnoredPromiseFromCall
-      this.successSound.nativeElement.play();
-    }
   }
 
   private showNextLetter(increment: boolean = true) {
