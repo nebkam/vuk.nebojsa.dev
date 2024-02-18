@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import WORDS from '../../assets/words/words.json';
 import {shuffle} from "./array";
 import {SoundService} from "./sound.service";
+import {BehaviorSubject, filter, tap} from "rxjs";
 
 interface Word {
   original: string;
@@ -12,9 +13,6 @@ interface Word {
   providedIn: 'root'
 })
 export class WordFactoryService {
-  currentWord: Word | null = null;
-  selectedLetters: string[] = [];
-
   private allWords: Word[] = WORDS.map(word => {
     return {
       original: word,
@@ -22,8 +20,18 @@ export class WordFactoryService {
     };
   });
   private currentWordIndex = 0;
+  private success = new BehaviorSubject(false);
+
+  currentWord: Word | null = null;
+  selectedLetters: string[] = [];
+  success$ = this.success.asObservable();
 
   constructor(private sound: SoundService) {
+    this.success$
+      .pipe(
+        filter(Boolean),
+        tap(() => this.sound.playSuccessSound())
+      ).subscribe();
   }
 
   get allWordsCount() {
@@ -37,15 +45,7 @@ export class WordFactoryService {
   deselectLetter(letter: string) {
     this.currentWord?.letters.push(letter);
     this.selectedLetters.splice(this.selectedLetters.indexOf(letter), 1);
-  }
-
-  isCurrentWordGuessed() {
-    const status = this.currentWord?.original === this.selectedLetters.join('');
-    if (status) {
-      this.sound.playSuccessSound();
-    }
-
-    return status;
+    this.success.next(this.isCurrentWordGuessed());
   }
 
   nextWord(increment: boolean = true) {
@@ -58,6 +58,7 @@ export class WordFactoryService {
     }
     this.currentWord = this.allWords[this.currentWordIndex];
     this.selectedLetters = [];
+    this.success.next(false);
 
     return true;
   }
@@ -65,6 +66,7 @@ export class WordFactoryService {
   selectLetter(letter: string) {
     this.selectedLetters.push(letter);
     this.currentWord?.letters.splice(this.currentWord.letters.indexOf(letter), 1);
+    this.success.next(this.isCurrentWordGuessed());
   }
 
   /**
@@ -73,5 +75,9 @@ export class WordFactoryService {
   start() {
     shuffle<Word>(this.allWords);
     this.nextWord(false);
+  }
+
+  private isCurrentWordGuessed() {
+    return this.currentWord?.original === this.selectedLetters.join('');
   }
 }

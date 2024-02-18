@@ -40,7 +40,7 @@
             }
           </div>
         </mat-card-content>
-        @if (wordFactory.isCurrentWordGuessed()) {
+        @if (wordFactory.success$ | async) {
           <mat-card-actions>
             <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реч</button>
           </mat-card-actions>

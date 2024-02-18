@@ -9,7 +9,7 @@ import {
 } from "@angular/material/card";
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-import {NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
 import {WordFactoryService} from "../shared/word-factory.service";
 
@@ -23,6 +23,7 @@ enum Stage {
   selector: 'app-word-spelling',
   standalone: true,
   imports: [
+    AsyncPipe,
     MatButton,
     MatCard,
     MatCardActions,
