@@ -5,8 +5,8 @@ import {MatIcon} from "@angular/material/icon";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {MatListItem, MatListItemIcon, MatNavList} from "@angular/material/list";
 import {MatAnchor, MatIconAnchor} from "@angular/material/button";
-import {SoundToggleComponent} from "./sound-toggle/sound-toggle.component";
-import {CustomMatIconRegistryService} from "./custom-mat-icon-registry.service";
+import {SoundToggleComponent} from "./shared/sound-toggle/sound-toggle.component";
+import {CustomMatIconRegistryService} from "./shared/custom-mat-icon-registry.service";
 
 @Component({
   selector: 'app-root',

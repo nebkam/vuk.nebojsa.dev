@@ -11,8 +11,8 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
-import {SoundService} from "../sound.service";
-import {SpellingService} from "../spelling.service";
+import {SoundService} from "../shared/sound.service";
+import {SpellingService} from "../shared/spelling.service";
 
 enum Stage {
   Start,

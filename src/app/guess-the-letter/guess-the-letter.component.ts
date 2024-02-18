@@ -2,7 +2,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {shuffle} from "../array";
-import {SoundService} from "../sound.service";
+import {SoundService} from "../shared/sound.service";
 
 enum Stage {
   Start,
