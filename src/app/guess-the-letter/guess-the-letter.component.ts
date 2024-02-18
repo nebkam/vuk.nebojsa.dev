@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {shuffle} from "../shared/array";
-import {SoundService} from "../shared/sound.service";
+import {FeedbackService} from "../shared/feedback.service";
 
 enum Stage {
   Start,
@@ -35,7 +35,7 @@ export class GuessTheLetterComponent {
   ];
   Stage = Stage;
 
-  constructor(private sound: SoundService) {
+  constructor(private feedback: FeedbackService) {
   }
 
   start() {
@@ -45,7 +45,7 @@ export class GuessTheLetterComponent {
   }
 
   markAsCorrect() {
-    this.sound.playSuccessSound();
+    this.feedback.success();
     this.points++;
     this.showNextLetter();
   }

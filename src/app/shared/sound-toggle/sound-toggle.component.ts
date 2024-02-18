@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
-import {SoundService} from "../sound.service";
+import {FeedbackService} from "../feedback.service";
 
 @Component({
   selector: 'app-sound-toggle',
@@ -14,6 +14,6 @@ import {SoundService} from "../sound.service";
   styleUrl: './sound-toggle.component.css'
 })
 export class SoundToggleComponent {
-  constructor(public sound: SoundService) {
+  constructor(public feedback: FeedbackService) {
   }
 }

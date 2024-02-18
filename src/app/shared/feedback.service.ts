@@ -1,13 +1,15 @@
 import {ElementRef, Injectable} from '@angular/core';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {CustomSnackBarComponent} from "./custom-snack-bar/custom-snack-bar.component";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SoundService {
+export class FeedbackService {
   private successSound!: ElementRef<HTMLAudioElement>;
   private storage: Storage;
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
     this.storage = window.localStorage;
   }
 
@@ -15,22 +17,23 @@ export class SoundService {
     this.successSound = successSound;
   }
 
-  isMuted() {
+  isSoundMuted() {
     return Boolean(this.storage.getItem('mute'));
   }
 
-  mute() {
+  muteSound() {
     this.storage.setItem('mute', 'yes');
   }
 
-  playSuccessSound() {
-    if (!this.isMuted()) {
+  success() {
+    if (!this.isSoundMuted()) {
       // noinspection JSIgnoredPromiseFromCall
       this.successSound.nativeElement.play();
     }
+    this.snackBar.openFromComponent(CustomSnackBarComponent, { duration: 300 });
   }
 
-  unmute() {
+  unmuteSound() {
     this.storage.removeItem('mute');
   }
 }

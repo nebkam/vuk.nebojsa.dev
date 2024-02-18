@@ -7,7 +7,7 @@ import {MatListItem, MatListItemIcon, MatNavList} from "@angular/material/list";
 import {MatAnchor, MatIconAnchor} from "@angular/material/button";
 import {SoundToggleComponent} from "./shared/sound-toggle/sound-toggle.component";
 import {CustomMatIconRegistryService} from "./shared/custom-mat-icon-registry.service";
-import {SoundService} from "./shared/sound.service";
+import {FeedbackService} from "./shared/feedback.service";
 
 @Component({
   selector: 'app-root',
@@ -36,11 +36,11 @@ export class AppComponent implements OnInit {
 
   constructor(
     private customMatIconRegistry: CustomMatIconRegistryService,
-    private sound: SoundService
+    private feedback: FeedbackService
   ) {
   }
 
   ngOnInit() {
-    this.sound.init(this.successSound);
+    this.feedback.init(this.successSound);
   }
 }

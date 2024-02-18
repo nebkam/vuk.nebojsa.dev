@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import SENTENCES from '../../assets/sentences/sentences.json';
 import {shuffle} from "./array";
-import {SoundService} from "./sound.service";
+import {FeedbackService} from "./feedback.service";
 import {BehaviorSubject, filter, tap} from "rxjs";
 
 interface Sentence {
@@ -26,11 +26,11 @@ export class SentenceFactoryService {
   selectedWords: string[] = [];
   success$ = this.success.asObservable();
 
-  constructor(private sound: SoundService) {
+  constructor(private feedback: FeedbackService) {
     this.success$
       .pipe(
         filter(Boolean),
-        tap(() => this.sound.playSuccessSound())
+        tap(() => this.feedback.success())
       ).subscribe();
   }
 

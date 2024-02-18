@@ -1,9 +1,9 @@
-@if (sound.isMuted()) {
-  <button mat-icon-button (click)="sound.unmute()">
+@if (feedback.isSoundMuted()) {
+  <button mat-icon-button (click)="feedback.unmuteSound()">
     <mat-icon>volume_off</mat-icon>
   </button>
 } @else {
-  <button mat-icon-button (click)="sound.mute()">
+  <button mat-icon-button (click)="feedback.muteSound()">
     <mat-icon>volume_up</mat-icon>
   </button>
 }
