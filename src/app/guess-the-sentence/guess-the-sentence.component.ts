@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {SentenceGuessingService} from "../shared/sentence-guessing.service";
+import {SentenceFactoryService} from "../shared/sentence-factory.service";
 
 enum Stage {
   Start,
@@ -18,7 +18,7 @@ export class GuessTheSentenceComponent {
   Stage = Stage;
   stage = Stage.Start;
 
-  constructor(public sentenceGuessing: SentenceGuessingService) {
-    console.log(sentenceGuessing);
+  constructor(public sentenceFactory: SentenceFactoryService) {
+    console.log(sentenceFactory);
   }
 }

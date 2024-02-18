@@ -11,7 +11,7 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
-import {SpellingService} from "../shared/spelling.service";
+import {WordFactoryService} from "../shared/word-factory.service";
 
 enum Stage {
   Start,
@@ -45,12 +45,12 @@ export class WordSpellingComponent {
   stage = Stage.Start;
 
   constructor(
-    public spelling: SpellingService
+    public wordFactory: WordFactoryService
   ) {
   }
 
   advance() {
-    this.spelling.nextWord() || this.end();
+    this.wordFactory.nextWord() || this.end();
   }
 
   end() {
@@ -64,6 +64,6 @@ export class WordSpellingComponent {
 
   start() {
     this.stage = Stage.Playing;
-    this.spelling.start();
+    this.wordFactory.start();
   }
 }

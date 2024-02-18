@@ -10,7 +10,7 @@ interface Sentence {
 @Injectable({
   providedIn: 'root'
 })
-export class SentenceGuessingService {
+export class SentenceFactoryService {
   currentSentence: Sentence | null = null;
   selectedWords: string[] = [];
   private allSentences: Sentence[] = SENTENCES.map(sentence => {

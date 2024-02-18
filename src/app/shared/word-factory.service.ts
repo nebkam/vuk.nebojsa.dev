@@ -10,7 +10,7 @@ interface Word {
 @Injectable({
   providedIn: 'root'
 })
-export class SpellingService {
+export class WordFactoryService {
   currentWord: Word | null = null;
   selectedLetters: string[] = [];
 

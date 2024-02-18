@@ -7,7 +7,7 @@
     </mat-card>
   }
   @case (Stage.Playing) {
-    @if (spelling.currentWord) {
+    @if (wordFactory.currentWord) {
       <mat-card>
         <mat-card-content>
           <div class="playback">
@@ -18,8 +18,8 @@
 
           <div class="letter-list">
             <button
-              *ngFor="let selectedLetter of spelling.selectedLetters"
-              (click)="spelling.deselectLetter(selectedLetter)"
+              *ngFor="let selectedLetter of wordFactory.selectedLetters"
+              (click)="wordFactory.deselectLetter(selectedLetter)"
               mat-raised-button
               color="accent"
               class="letter-button">
@@ -30,9 +30,9 @@
           <mat-divider></mat-divider>
 
           <div class="letter-list">
-            @for (letter of spelling.currentWord.letters; track spelling.currentWord.original) {
+            @for (letter of wordFactory.currentWord.letters; track wordFactory.currentWord.original) {
               <button
-                (click)="spelling.selectLetter(letter)"
+                (click)="wordFactory.selectLetter(letter)"
                 mat-raised-button
                 class="letter-button">
                 {{ letter }}
@@ -40,17 +40,17 @@
             }
           </div>
         </mat-card-content>
-        @if (spelling.isCurrentWordGuessed()) {
+        @if (wordFactory.isCurrentWordGuessed()) {
           <mat-card-actions>
             <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реч</button>
           </mat-card-actions>
         }
         <mat-card-footer>
-          {{spelling.currentWordNumber}} / {{spelling.allWordsCount}}
+          {{wordFactory.currentWordNumber}} / {{wordFactory.allWordsCount}}
         </mat-card-footer>
       </mat-card>
 
-      <audio #wordSound src="/assets/words/mp3/{{spelling.currentWord.original}}.mp3" autoplay></audio>
+      <audio #wordSound src="/assets/words/mp3/{{wordFactory.currentWord.original}}.mp3" autoplay></audio>
     }
   }
   @case (Stage.End) {
@@ -60,7 +60,7 @@
           <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
         </h1>
         <h2 mat-card-subtitle>
-          Написао си {{ spelling.allWordsCount }} речи
+          Написао си {{ wordFactory.allWordsCount }} речи
         </h2>
       </mat-card-content>
     </mat-card>
