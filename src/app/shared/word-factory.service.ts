@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import WORDS from '../../assets/words/words.json';
 import {shuffle} from "./array";
+import {SoundService} from "./sound.service";
 
 interface Word {
   original: string;
@@ -22,7 +23,7 @@ export class WordFactoryService {
   });
   private currentWordIndex = 0;
 
-  constructor() {
+  constructor(private sound: SoundService) {
   }
 
   get allWordsCount() {
@@ -39,7 +40,12 @@ export class WordFactoryService {
   }
 
   isCurrentWordGuessed() {
-    return this.currentWord?.original === this.selectedLetters.join('');
+    const status = this.currentWord?.original === this.selectedLetters.join('');
+    if (status) {
+      this.sound.playSuccessSound();
+    }
+
+    return status;
   }
 
   nextWord(increment: boolean = true) {

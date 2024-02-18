@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import SENTENCES from '../../assets/sentences/sentences.json';
 import {shuffle} from "./array";
+import {SoundService} from "./sound.service";
 
 interface Sentence {
   original: string;
@@ -21,7 +22,8 @@ export class SentenceFactoryService {
   });
   private currentSentenceIndex = 0;
 
-  constructor() { }
+  constructor(private sound: SoundService) {
+  }
 
   get allSentencesCount() {
     return this.allSentences.length;
@@ -37,7 +39,12 @@ export class SentenceFactoryService {
   }
 
   isCurrentSentenceGuessed() {
-    return this.currentSentence?.original === this.selectedWords.join(' ');
+    const status = this.currentSentence?.original === this.selectedWords.join(' ');
+    if (status) {
+      this.sound.playSuccessSound();
+    }
+
+    return status;
   }
 
   nextSentence(increment: boolean = true) {
