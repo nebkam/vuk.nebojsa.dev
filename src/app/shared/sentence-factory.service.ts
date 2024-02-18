@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import SENTENCES from '../../assets/sentences/sentences.json';
 import {shuffle} from "./array";
 import {SoundService} from "./sound.service";
+import {BehaviorSubject, filter, tap} from "rxjs";
 
 interface Sentence {
   original: string;
@@ -12,8 +13,6 @@ interface Sentence {
   providedIn: 'root'
 })
 export class SentenceFactoryService {
-  currentSentence: Sentence | null = null;
-  selectedWords: string[] = [];
   private allSentences: Sentence[] = SENTENCES.map(sentence => {
     return {
       original: sentence,
@@ -21,8 +20,18 @@ export class SentenceFactoryService {
     };
   });
   private currentSentenceIndex = 0;
+  private success = new BehaviorSubject(false);
+
+  currentSentence: Sentence | null = null;
+  selectedWords: string[] = [];
+  success$ = this.success.asObservable();
 
   constructor(private sound: SoundService) {
+    this.success$
+      .pipe(
+        filter(Boolean),
+        tap(() => this.sound.playSuccessSound())
+      ).subscribe();
   }
 
   get allSentencesCount() {
@@ -36,15 +45,7 @@ export class SentenceFactoryService {
   deselectWord(word: string) {
     this.currentSentence?.words.push(word);
     this.selectedWords.splice(this.selectedWords.indexOf(word), 1);
-  }
-
-  isCurrentSentenceGuessed() {
-    const status = this.currentSentence?.original === this.selectedWords.join(' ');
-    if (status) {
-      this.sound.playSuccessSound();
-    }
-
-    return status;
+    this.success.next(false);
   }
 
   nextSentence(increment: boolean = true) {
@@ -57,6 +58,7 @@ export class SentenceFactoryService {
     }
     this.currentSentence = this.allSentences[this.currentSentenceIndex];
     this.selectedWords = [];
+    this.success.next(false);
 
     return true;
   }
@@ -64,10 +66,15 @@ export class SentenceFactoryService {
   selectWord(word: string) {
     this.selectedWords.push(word);
     this.currentSentence?.words.splice(this.currentSentence?.words.indexOf(word), 1);
+    this.success.next(this.isCurrentSentenceGuessed());
   }
 
   start() {
     shuffle<Sentence>(this.allSentences);
     this.nextSentence(false);
+  }
+
+  private isCurrentSentenceGuessed() {
+    return this.currentSentence?.original === this.selectedWords.join(' ');
   }
 }

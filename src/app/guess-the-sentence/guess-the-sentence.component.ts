@@ -10,7 +10,7 @@ import {
 } from "@angular/material/card";
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-import {NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
 
 enum Stage {
@@ -23,17 +23,18 @@ enum Stage {
   selector: 'app-guess-the-sentence',
   standalone: true,
   imports: [
-    MatCard,
-    MatCardContent,
+    AsyncPipe,
     MatButton,
+    MatCard,
+    MatCardActions,
+    MatCardContent,
+    MatCardFooter,
+    MatCardSubtitle,
+    MatCardTitle,
+    MatDivider,
     MatFabButton,
     MatIcon,
     NgForOf,
-    MatDivider,
-    MatCardActions,
-    MatCardFooter,
-    MatCardSubtitle,
-    MatCardTitle
   ],
   templateUrl: './guess-the-sentence.component.html',
   styleUrl: './guess-the-sentence.component.css'

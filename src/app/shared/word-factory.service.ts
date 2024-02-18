@@ -45,7 +45,7 @@ export class WordFactoryService {
   deselectLetter(letter: string) {
     this.currentWord?.letters.push(letter);
     this.selectedLetters.splice(this.selectedLetters.indexOf(letter), 1);
-    this.success.next(this.isCurrentWordGuessed());
+    this.success.next(false);
   }
 
   nextWord(increment: boolean = true) {

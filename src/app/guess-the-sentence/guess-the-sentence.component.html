@@ -40,7 +40,7 @@
             }
           </div>
         </mat-card-content>
-        @if (sentenceFactory.isCurrentSentenceGuessed()) {
+        @if (sentenceFactory.success$ | async) {
           <mat-card-actions>
             <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реченица</button>
           </mat-card-actions>
