@@ -11,7 +11,6 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
-import {SoundService} from "../shared/sound.service";
 import {SpellingService} from "../shared/spelling.service";
 
 enum Stage {
@@ -46,7 +45,6 @@ export class WordSpellingComponent {
   stage = Stage.Start;
 
   constructor(
-    public sound: SoundService,
     public spelling: SpellingService
   ) {
   }
