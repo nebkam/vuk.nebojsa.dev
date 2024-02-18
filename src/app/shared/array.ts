@@ -6,3 +6,7 @@ export function shuffle<T>(array: T[]): T[] {
 
   return array;
 }
+
+export function sort(array: string[]): string[] {
+  return array.sort((a, b) => a.localeCompare(b));
+}

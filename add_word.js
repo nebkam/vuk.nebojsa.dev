@@ -1,6 +1,7 @@
 const textToSpeech = require('@google-cloud/text-to-speech');
 const fs = require('fs');
 const util = require('util');
+const {sort} = require("./src/app/shared/array");
 const writeFile = util.promisify(fs.writeFile);
 const readFile = util.promisify(fs.readFile);
 const client = new textToSpeech.TextToSpeechClient();
@@ -16,6 +17,7 @@ async function synthesiseAndSave() {
   const json= await readFile(WORDS_FILE_PATH, 'utf8');
   const WORDS = JSON.parse(json);
   WORDS.push(word);
+  sort(WORDS);
   await writeFile(WORDS_FILE_PATH, JSON.stringify(WORDS, null, 2), 'utf8');
   console.log(`Word added to file: ${WORDS_FILE_PATH}`);
 
