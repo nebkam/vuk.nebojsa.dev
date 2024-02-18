@@ -2,6 +2,10 @@
   <mat-card-content>
     @switch (stage) {
       @case (Stage.Start) {
+        <div mat-card-title>Које је ово слово?</div>
+        <p>
+          Покажите детету екран да препозна слово
+        </p>
         <button mat-raised-button class="w-100" color="primary" (click)="start()">
           Почни
         </button>
@@ -13,7 +17,7 @@
           Нетачно
         </button>
         <button mat-flat-button color="primary" (click)="markAsCorrect();">
-          Тачно
+          <mat-icon>check_circle_outline</mat-icon>Тачно
         </button>
       }
       @case (Stage.End) {

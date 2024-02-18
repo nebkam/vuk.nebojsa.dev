@@ -2,8 +2,14 @@
   @case (Stage.Start) {
     <mat-card>
       <mat-card-content>
-        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+        <h1 mat-card-title>Која је то реч?</h1>
+        <p>
+          Послушај снимак и сложи реч од датих слова
+        </p>
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+      </mat-card-actions>
     </mat-card>
   }
   @case (Stage.Playing) {
@@ -42,7 +48,10 @@
         </mat-card-content>
         @if (wordFactory.success$ | async) {
           <mat-card-actions>
-            <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реч</button>
+            <button mat-flat-button color="primary" class="w-100" (click)="advance()">
+              Даље
+              <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+            </button>
           </mat-card-actions>
         }
         <mat-card-footer>
@@ -60,7 +69,7 @@
           <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
         </h1>
         <h2 mat-card-subtitle>
-          Написао си {{ wordFactory.allWordsCount }} речи
+          Написао си свих {{ wordFactory.allWordsCount }} речи
         </h2>
       </mat-card-content>
     </mat-card>

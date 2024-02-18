@@ -2,8 +2,14 @@
   @case (Stage.Start) {
     <mat-card>
       <mat-card-content>
-        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+        <h1 mat-card-title>Сложи реченицу</h1>
+        <p>
+          Послушај снимак и сложи речи по редоследу
+        </p>
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+      </mat-card-actions>
     </mat-card>
   }
   @case (Stage.Playing) {
@@ -42,7 +48,10 @@
         </mat-card-content>
         @if (sentenceFactory.success$ | async) {
           <mat-card-actions>
-            <button mat-flat-button color="primary" class="w-100" (click)="advance()">Следећа реченица</button>
+            <button mat-flat-button color="primary" class="w-100" (click)="advance()">
+              Даље
+              <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+            </button>
           </mat-card-actions>
         }
         <mat-card-footer>

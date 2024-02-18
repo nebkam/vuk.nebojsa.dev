@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
-import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
+import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from "@angular/material/card";
 import {shuffle} from "../shared/array";
 import {FeedbackService} from "../shared/feedback.service";
+import {MatIcon} from "@angular/material/icon";
 
 enum Stage {
   Start,
@@ -18,6 +19,8 @@ enum Stage {
     MatCard,
     MatCardActions,
     MatCardContent,
+    MatCardTitle,
+    MatIcon,
   ],
   templateUrl: './guess-the-letter.component.html',
   styleUrl: './guess-the-letter.component.css'
