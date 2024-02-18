@@ -30,7 +30,7 @@ export class FeedbackService {
       // noinspection JSIgnoredPromiseFromCall
       this.successSound.nativeElement.play();
     }
-    this.snackBar.openFromComponent(CustomSnackBarComponent, { duration: 300 });
+    this.snackBar.openFromComponent(CustomSnackBarComponent, { duration: 800 });
   }
 
   unmuteSound() {
