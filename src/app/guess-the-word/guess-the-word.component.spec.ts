@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {WordSpellingComponent} from './word-spelling.component';
+import {GuessTheWordComponent} from './guess-the-word.component';
 
-describe('WordsSpellingComponent', () => {
-  let component: WordSpellingComponent;
-  let fixture: ComponentFixture<WordSpellingComponent>;
+describe('GuessTheWordComponent', () => {
+  let component: GuessTheWordComponent;
+  let fixture: ComponentFixture<GuessTheWordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WordSpellingComponent]
+      imports: [GuessTheWordComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(WordSpellingComponent);
+    fixture = TestBed.createComponent(GuessTheWordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

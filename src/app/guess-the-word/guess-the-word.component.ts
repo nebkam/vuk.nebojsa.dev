@@ -20,7 +20,7 @@ enum Stage {
 }
 
 @Component({
-  selector: 'app-word-spelling',
+  selector: 'app-guess-the-word',
   standalone: true,
   imports: [
     AsyncPipe,
@@ -36,10 +36,10 @@ enum Stage {
     MatIcon,
     NgForOf,
   ],
-  templateUrl: './word-spelling.component.html',
-  styleUrl: './word-spelling.component.css'
+  templateUrl: './guess-the-word.component.html',
+  styleUrl: './guess-the-word.component.css'
 })
-export class WordSpellingComponent {
+export class GuessTheWordComponent {
   @ViewChild('wordSound', {static: false}) wordSound!: ElementRef<HTMLAudioElement>;
 
   Stage = Stage;

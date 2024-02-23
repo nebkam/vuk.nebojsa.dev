@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {GuessTheLetterComponent} from "./guess-the-letter/guess-the-letter.component";
-import {WordSpellingComponent} from "./word-spelling/word-spelling.component";
+import {GuessTheWordComponent} from "./guess-the-word/guess-the-word.component";
 import {GuessTheSentenceComponent} from "./guess-the-sentence/guess-the-sentence.component";
 
 export const routes: Routes = [
@@ -15,7 +15,7 @@ export const routes: Routes = [
   }, {
     path: 'slozi-recenicu', component: GuessTheSentenceComponent
   }, {
-    path: 'slozi-rec', component: WordSpellingComponent
+    path: 'slozi-rec', component: GuessTheWordComponent
   }, {
     path: '', component: HomeComponent
   }];
