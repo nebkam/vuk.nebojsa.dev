@@ -3,16 +3,12 @@ import WORDS from '../../assets/words/words.json';
 import {shuffle} from "./array";
 import {FeedbackService} from "./feedback.service";
 import {BehaviorSubject, filter, tap} from "rxjs";
-
-interface Word {
-  original: string;
-  letters: string[];
-}
+import {Word, WordFactory} from "./word-factory";
 
 @Injectable({
   providedIn: 'root'
 })
-export class WordFactoryService {
+export class StaticWordFactoryService implements WordFactory {
   private allWords: Word[] = WORDS.map(word => {
     return {
       original: word,
