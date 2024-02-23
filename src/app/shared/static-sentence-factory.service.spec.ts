@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SentenceFactoryService } from './sentence-factory.service';
+import { StaticSentenceFactoryService } from './static-sentence-factory.service';
 
 describe('SentenceGuessingService', () => {
-  let service: SentenceFactoryService;
+  let service: StaticSentenceFactoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SentenceFactoryService);
+    service = TestBed.inject(StaticSentenceFactoryService);
   });
 
   it('should be created', () => {

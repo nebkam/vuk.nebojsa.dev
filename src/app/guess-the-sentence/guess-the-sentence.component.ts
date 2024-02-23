@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {SentenceFactoryService} from "../shared/sentence-factory.service";
+import {StaticSentenceFactoryService} from "../shared/static-sentence-factory.service";
 import {
   MatCard,
   MatCardActions,
@@ -45,7 +45,7 @@ export class GuessTheSentenceComponent {
   Stage = Stage;
   stage = Stage.Start;
 
-  constructor(public sentenceFactory: SentenceFactoryService) {
+  constructor(public sentenceFactory: StaticSentenceFactoryService) {
   }
 
   advance() {

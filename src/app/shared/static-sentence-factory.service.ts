@@ -3,16 +3,12 @@ import SENTENCES from '../../assets/sentences/sentences.json';
 import {shuffle} from "./array";
 import {FeedbackService} from "./feedback.service";
 import {BehaviorSubject, filter, tap} from "rxjs";
-
-interface Sentence {
-  original: string;
-  words: string[];
-}
+import {Sentence, SentenceFactory} from "./sentence-factory";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SentenceFactoryService {
+export class StaticSentenceFactoryService implements SentenceFactory {
   private allSentences: Sentence[] = SENTENCES.map(sentence => {
     return {
       original: sentence,

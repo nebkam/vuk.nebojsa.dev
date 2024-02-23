@@ -11,5 +11,6 @@ export interface WordFactory {
   success$: Observable<boolean>;
 
   deselectLetter(letter: string): void;
+
   selectLetter(letter: string): void;
 }
