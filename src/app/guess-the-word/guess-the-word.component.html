@@ -13,54 +13,22 @@
     </mat-card>
   }
   @case (Stage.Playing) {
-    @if (wordFactory.currentWord) {
-      <mat-card>
-        <mat-card-content>
-          <div class="playback">
-            <button mat-fab (click)="playWordSound()">
-              <mat-icon>volume_up</mat-icon>
-            </button>
-          </div>
-
-          <div class="letter-list">
-            <button
-              *ngFor="let selectedLetter of wordFactory.selectedLetters"
-              (click)="wordFactory.deselectLetter(selectedLetter)"
-              mat-raised-button
-              color="accent"
-              class="letter-button">
-              {{ selectedLetter }}
-            </button>
-          </div>
-
-          <mat-divider></mat-divider>
-
-          <div class="letter-list">
-            @for (letter of wordFactory.currentWord.letters; track wordFactory.currentWord.original) {
-              <button
-                (click)="wordFactory.selectLetter(letter)"
-                mat-raised-button
-                class="letter-button">
-                {{ letter }}
-              </button>
-            }
-          </div>
-        </mat-card-content>
-        @if (wordFactory.success$ | async) {
-          <mat-card-actions>
-            <button mat-flat-button color="primary" class="w-100" (click)="advance()">
-              Даље
-              <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
-            </button>
-          </mat-card-actions>
-        }
-        <mat-card-footer>
-          {{wordFactory.currentWordNumber}} / {{wordFactory.allWordsCount}}
-        </mat-card-footer>
-      </mat-card>
-
-      <audio #wordSound src="/assets/words/mp3/{{wordFactory.currentWord.original}}.mp3" autoplay></audio>
-    }
+    <mat-card>
+      <mat-card-content>
+        <app-spelling [wordFactory]="wordFactory"></app-spelling>
+      </mat-card-content>
+      @if (wordFactory.success$ | async) {
+        <mat-card-actions>
+          <button mat-flat-button color="primary" class="w-100" (click)="advance()">
+            Даље
+            <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+          </button>
+        </mat-card-actions>
+      }
+      <mat-card-footer>
+        {{ wordFactory.currentWordNumber }} / {{ wordFactory.allWordsCount }}
+      </mat-card-footer>
+    </mat-card>
   }
   @case (Stage.End) {
     <mat-card>

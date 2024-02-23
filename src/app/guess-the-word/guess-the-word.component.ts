@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {
   MatCard,
   MatCardActions,
@@ -7,11 +7,11 @@ import {
   MatCardSubtitle,
   MatCardTitle
 } from "@angular/material/card";
-import {MatButton, MatFabButton} from "@angular/material/button";
+import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-import {AsyncPipe, NgForOf} from "@angular/common";
-import {MatDivider} from "@angular/material/divider";
+import {AsyncPipe} from "@angular/common";
 import {StaticWordFactoryService} from "../shared/static-word-factory.service";
+import {SpellingComponent} from "../shared/spelling/spelling.component";
 
 enum Stage {
   Start,
@@ -31,16 +31,13 @@ enum Stage {
     MatCardFooter,
     MatCardSubtitle,
     MatCardTitle,
-    MatDivider,
-    MatFabButton,
     MatIcon,
-    NgForOf,
+    SpellingComponent,
   ],
   templateUrl: './guess-the-word.component.html',
   styleUrl: './guess-the-word.component.css'
 })
 export class GuessTheWordComponent {
-  @ViewChild('wordSound', {static: false}) wordSound!: ElementRef<HTMLAudioElement>;
 
   Stage = Stage;
   stage = Stage.Start;
@@ -56,11 +53,6 @@ export class GuessTheWordComponent {
 
   end() {
     this.stage = Stage.End;
-  }
-
-  playWordSound() {
-    // noinspection JSIgnoredPromiseFromCall
-    this.wordSound.nativeElement.play();
   }
 
   start() {
