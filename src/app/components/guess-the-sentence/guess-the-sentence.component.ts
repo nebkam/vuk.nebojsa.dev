@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {StaticSentenceFactoryService} from "../../services/static-sentence-factory.service";
 import {
   MatCard,
@@ -8,10 +8,10 @@ import {
   MatCardSubtitle,
   MatCardTitle
 } from "@angular/material/card";
-import {MatButton, MatFabButton} from "@angular/material/button";
+import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-import {AsyncPipe, NgForOf} from "@angular/common";
-import {MatDivider} from "@angular/material/divider";
+import {AsyncPipe} from "@angular/common";
+import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
 
 enum Stage {
   Start,
@@ -31,17 +31,13 @@ enum Stage {
     MatCardFooter,
     MatCardSubtitle,
     MatCardTitle,
-    MatDivider,
-    MatFabButton,
     MatIcon,
-    NgForOf,
+    SentenceBuildingComponent,
   ],
   templateUrl: './guess-the-sentence.component.html',
   styleUrl: './guess-the-sentence.component.css'
 })
 export class GuessTheSentenceComponent {
-  @ViewChild('sentenceSound', {static: false}) sentenceSound!: ElementRef<HTMLAudioElement>;
-
   Stage = Stage;
   stage = Stage.Start;
 
@@ -54,11 +50,6 @@ export class GuessTheSentenceComponent {
 
   end() {
     this.stage = Stage.End;
-  }
-
-  playSentenceSound() {
-    // noinspection JSIgnoredPromiseFromCall
-    this.sentenceSound.nativeElement.play();
   }
 
   start() {

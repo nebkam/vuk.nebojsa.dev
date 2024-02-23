@@ -1,0 +1,33 @@
+@if (sentenceFactory.currentSentence) {
+  <div class="playback">
+    <button mat-fab (click)="playSentenceSound()">
+      <mat-icon>volume_up</mat-icon>
+    </button>
+  </div>
+
+  <div class="word-list">
+    <button
+      *ngFor="let selectedWord of sentenceFactory.selectedWords"
+      (click)="sentenceFactory.deselectWord(selectedWord)"
+      mat-raised-button
+      color="accent"
+      class="word-button">
+      {{ selectedWord }}
+    </button>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="word-list">
+    @for (word of sentenceFactory.currentSentence.words; track sentenceFactory.currentSentence.original) {
+      <button
+        (click)="sentenceFactory.selectWord(word)"
+        mat-raised-button
+        class="word-button">
+        {{ word }}
+      </button>
+    }
+  </div>
+
+  <audio #sentenceSound src="/assets/sentences/mp3/{{sentenceFactory.currentSentence.original}}.mp3" autoplay></audio>
+}
