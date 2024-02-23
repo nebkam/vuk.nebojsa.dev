@@ -10,8 +10,8 @@ import {
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {AsyncPipe} from "@angular/common";
-import {StaticWordFactoryService} from "../shared/static-word-factory.service";
-import {SpellingComponent} from "../shared/spelling/spelling.component";
+import {StaticWordFactoryService} from "../../services/static-word-factory.service";
+import {SpellingComponent} from "../spelling/spelling.component";
 
 enum Stage {
   Start,

@@ -3,7 +3,7 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
-import {WordFactory} from "../word-factory";
+import {WordFactory} from "../../services/word-factory";
 
 @Component({
   selector: 'app-spelling',

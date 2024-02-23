@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import SENTENCES from '../../assets/sentences/sentences.json';
-import {shuffle} from "./array";
+import {shuffle} from "../lib/array";
 import {FeedbackService} from "./feedback.service";
 import {BehaviorSubject, filter, tap} from "rxjs";
 import {Sentence, SentenceFactory} from "./sentence-factory";

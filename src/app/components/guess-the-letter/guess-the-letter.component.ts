@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from "@angular/material/card";
-import {shuffle} from "../shared/array";
-import {FeedbackService} from "../shared/feedback.service";
+import {shuffle} from "../../lib/array";
+import {FeedbackService} from "../../services/feedback.service";
 import {MatIcon} from "@angular/material/icon";
 
 enum Stage {

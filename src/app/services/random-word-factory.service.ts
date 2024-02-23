@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Word, WordFactory} from "./word-factory";
 import {BehaviorSubject, filter, tap} from "rxjs";
 import WORDS from "../../assets/words/words.json";
-import {shuffle} from "./array";
+import {shuffle} from "../lib/array";
 import {FeedbackService} from "./feedback.service";
 
 @Injectable({

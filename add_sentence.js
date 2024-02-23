@@ -1,7 +1,7 @@
 const textToSpeech = require('@google-cloud/text-to-speech');
 const fs = require('fs');
 const util = require('util');
-const {sort} = require("./src/app/shared/array");
+const {sort} = require("./src/app/lib/array");
 const writeFile = util.promisify(fs.writeFile);
 const readFile = util.promisify(fs.readFile);
 const client = new textToSpeech.TextToSpeechClient();

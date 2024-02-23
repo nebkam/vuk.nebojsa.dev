@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {StaticSentenceFactoryService} from "../shared/static-sentence-factory.service";
+import {StaticSentenceFactoryService} from "../../services/static-sentence-factory.service";
 import {
   MatCard,
   MatCardActions,
