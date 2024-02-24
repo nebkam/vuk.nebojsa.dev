@@ -42,7 +42,7 @@ export class RandomWordFactoryService implements WordFactory {
 
   randomWord() {
     shuffle<Word>(this.allWords);
-    this.currentWord = this.allWords[0];
+    this.currentWord = JSON.parse(JSON.stringify(this.allWords[0])) as Word; // deep copy
     shuffle<string>(this.currentWord.letters);
     this.selectedLetters = [];
     this.success.next(false);

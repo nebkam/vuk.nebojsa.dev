@@ -38,7 +38,7 @@ export class RandomSentenceFactoryService implements SentenceFactory {
 
   randomSentence() {
     shuffle<Sentence>(this.allSentences);
-    this.currentSentence = this.allSentences[0];
+    this.currentSentence = JSON.parse(JSON.stringify(this.allSentences[0])) as Sentence; // deep copy
     shuffle<string>(this.currentSentence.words);
     this.selectedWords = [];
     this.success.next(false);
