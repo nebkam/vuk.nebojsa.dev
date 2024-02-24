@@ -9,7 +9,6 @@ import {
   MatCardTitle
 } from "@angular/material/card";
 import {randomElement} from "../../lib/array";
-import {RandomWordFactoryService} from "../../services/random-word-factory.service";
 import {RandomSentenceFactoryService} from "../../services/random-sentence-factory.service";
 import {SpellingComponent} from "../spelling/spelling.component";
 import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
@@ -23,6 +22,8 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Spelling2Component} from "../spelling2/spelling2.component";
+import {RandomWordFactory2Service} from "../../services/random-word-factory2.service";
 
 interface UserScore {
   name: string | null;
@@ -68,6 +69,7 @@ enum Type {
     ReactiveFormsModule,
     SentenceBuildingComponent,
     SpellingComponent,
+    Spelling2Component,
   ],
   templateUrl: './tournament.component.html',
   styleUrl: './tournament.component.css'
@@ -85,7 +87,7 @@ export class TournamentComponent {
   type = randomElement([Type.Spelling, Type.SentenceBuilding]);
 
   constructor(
-    public wordFactory: RandomWordFactoryService,
+    public wordFactory: RandomWordFactory2Service,
     public sentenceFactory: RandomSentenceFactoryService,
     private snackBar: MatSnackBar
   ) {
@@ -113,7 +115,7 @@ export class TournamentComponent {
     this.type = randomElement([Type.Spelling, Type.SentenceBuilding]);
     switch (this.type) {
       case Type.Spelling:
-        this.wordFactory.randomWord();
+        this.wordFactory.advance();
         break;
       case Type.SentenceBuilding:
         this.sentenceFactory.randomSentence();
