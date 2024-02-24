@@ -6,22 +6,23 @@
   </div>
 
   <div class="letter-list">
-    <button
-      *ngFor="let selectedLetter of wordFactory.selectedLetters"
-      (click)="wordFactory.toggle(selectedLetter)"
-      mat-raised-button
-      color="accent"
-      class="letter-button">
-      {{ selectedLetter.value }}
-    </button>
+    @for (selectedLetter of wordFactory.selectedLetters; track selectedLetter.value) {
+      <button
+        mat-raised-button
+        color="accent"
+        class="letter-button"
+        (click)="wordFactory.deselect(selectedLetter, $index)">
+        {{ selectedLetter.value }}
+      </button>
+    }
   </div>
 
   <mat-divider></mat-divider>
 
   <div class="letter-list">
-    @for (letter of wordFactory.letters; track letter) {
+    @for (letter of wordFactory.letters; track letter.value) {
       <button
-        (click)="wordFactory.toggle(letter)"
+        (click)="wordFactory.select(letter, $index)"
         [disabled]="letter.selected"
         mat-raised-button
         class="letter-button">

@@ -12,3 +12,6 @@
   text-transform: uppercase;
   margin: .5em
 }
+.mdc-button:disabled {
+  color: transparent;
+}

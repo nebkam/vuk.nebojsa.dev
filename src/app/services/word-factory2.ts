@@ -4,15 +4,21 @@ export interface Letter {
   value: string;
   selected: boolean;
 }
+export interface SelectedLetter {
+  value: string;
+  index: number;
+}
 
 export interface WordFactory2 {
   word: string | null;
   letters: Letter[];
-  selectedLetters: Letter[];
+  selectedLetters: SelectedLetter[];
   success$: Observable<boolean>;
   total: number;
 
-  toggle(letter: Letter): void;
+  deselect(selectedLetter: SelectedLetter, index: number): void;
+
+  select(letter: Letter, index: number): void;
 
   start(): void;
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Letter, WordFactory2} from "./word-factory2";
+import {Letter, SelectedLetter, WordFactory2} from "./word-factory2";
 import {BehaviorSubject, Observable} from "rxjs";
 import WORDS from "../../assets/words/words.json";
 import {shuffle} from "../lib/array";
@@ -13,16 +13,13 @@ export class StaticWordFactory2Service implements WordFactory2 {
   private wordIndex: number;
 
   letters: Letter[] = [];
+  selectedLetters: SelectedLetter[] = [];
   success$: Observable<boolean> = this.success.asObservable();
   word: string | null = null;
 
   constructor() {
     this.allWords = WORDS;
     this.wordIndex = 0;
-  }
-
-  get selectedLetters(): Letter[] {
-    return this.letters.filter(letter => letter.selected);
   }
 
   get total(): number {
@@ -33,6 +30,11 @@ export class StaticWordFactory2Service implements WordFactory2 {
     return false;
   }
 
+  deselect(selectedLetter:SelectedLetter, index: number): void {
+    this.selectedLetters.splice(index, 1);
+    this.letters[selectedLetter.index].selected = false;
+  }
+
   start(): void {
     shuffle(this.allWords);
     this.wordIndex = 0;
@@ -41,8 +43,9 @@ export class StaticWordFactory2Service implements WordFactory2 {
     shuffle(this.letters);
   }
 
-  toggle(letter: Letter): void {
-    letter.selected = !letter.selected;
+  select(letter: Letter, index: number): void {
+    letter.selected = true;
+    this.selectedLetters.push({value: letter.value, index});
   }
 }
 
