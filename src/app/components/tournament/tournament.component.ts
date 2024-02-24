@@ -10,7 +10,6 @@ import {
 } from "@angular/material/card";
 import {randomElement} from "../../lib/array";
 import {RandomSentenceFactoryService} from "../../services/random-sentence-factory.service";
-import {SpellingComponent} from "../spelling/spelling.component";
 import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
 import {AsyncPipe} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
@@ -68,7 +67,6 @@ enum Type {
     MatTextColumn,
     ReactiveFormsModule,
     SentenceBuildingComponent,
-    SpellingComponent,
     Spelling2Component,
   ],
   templateUrl: './tournament.component.html',
