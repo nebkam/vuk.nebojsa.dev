@@ -8,6 +8,7 @@ export interface Letter {
 export interface WordFactory2 {
   word: string | null;
   letters: Letter[];
+  selectedLetters: Letter[];
   success$: Observable<boolean>;
   total: number;
 

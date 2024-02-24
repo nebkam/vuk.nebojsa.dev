@@ -1,0 +1,14 @@
+.playback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 112px;
+}
+.letter-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.letter-button {
+  text-transform: uppercase;
+  margin: .5em
+}

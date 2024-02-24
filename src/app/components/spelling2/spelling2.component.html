@@ -1,1 +1,34 @@
-<p>spelling2 works!</p>
+@if (wordFactory.word) {
+  <div class="playback">
+    <button mat-fab (click)="playSound()">
+      <mat-icon>volume_up</mat-icon>
+    </button>
+  </div>
+
+  <div class="letter-list">
+    <button
+      *ngFor="let selectedLetter of wordFactory.selectedLetters"
+      (click)="wordFactory.toggle(selectedLetter)"
+      mat-raised-button
+      color="accent"
+      class="letter-button">
+      {{ selectedLetter.value }}
+    </button>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="letter-list">
+    @for (letter of wordFactory.letters; track letter) {
+      <button
+        (click)="wordFactory.toggle(letter)"
+        [disabled]="letter.selected"
+        mat-raised-button
+        class="letter-button">
+        {{ letter.value }}
+      </button>
+    }
+  </div>
+
+  <audio #wordSound src="/assets/words/mp3/{{wordFactory.word}}.mp3" autoplay></audio>
+}
