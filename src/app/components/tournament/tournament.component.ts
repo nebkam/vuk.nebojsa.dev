@@ -55,8 +55,18 @@ export class TournamentComponent {
   }
 
   next() {
-    this.wordFactory.randomWord();
-    this.sentenceFactory.randomSentence();
     this.type = randomElement([Type.Spelling, Type.SentenceBuilding]);
+    switch (this.type) {
+      case Type.Spelling:
+        this.wordFactory.randomWord();
+        break;
+      case Type.SentenceBuilding:
+        this.sentenceFactory.randomSentence();
+        break;
+    }
+  }
+
+  end() {
+    this.stage = Stage.End;
   }
 }
