@@ -1,3 +1,6 @@
 .exit {
   transform: rotate(180deg);
 }
+mat-card-footer {
+  text-align: center;
+}

@@ -15,9 +15,11 @@ export class RandomWordFactoryService implements WordFactory {
       letters: word.split('')
     };
   });
+  private points = new BehaviorSubject(0);
   private success = new BehaviorSubject(false);
 
   currentWord: Word | null = null;
+  points$ = this.points.asObservable();
   selectedLetters: string[] = [];
   success$ = this.success.asObservable();
 
@@ -51,6 +53,7 @@ export class RandomWordFactoryService implements WordFactory {
   selectLetter(letter: string): void {
     this.selectedLetters.push(letter);
     this.currentWord?.letters.splice(this.currentWord.letters.indexOf(letter), 1);
+    this.points.next( this.currentWord?.original.startsWith(this.selectedLetters.join('')) ? 1 : -1);
     this.success.next(this.isCurrentWordGuessed());
   }
 }

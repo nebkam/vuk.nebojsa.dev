@@ -15,9 +15,11 @@ export class RandomSentenceFactoryService implements SentenceFactory {
       words: sentence.split(' ')
     };
   });
+  private points = new BehaviorSubject(0);
   private success = new BehaviorSubject(false);
 
   currentSentence: Sentence | null = null;
+  points$ = this.points.asObservable();
   selectedWords: string[] = [];
   success$ = this.success.asObservable();
 
@@ -47,6 +49,7 @@ export class RandomSentenceFactoryService implements SentenceFactory {
   selectWord(word: string): void {
     this.selectedWords.push(word);
     this.currentSentence?.words.splice(this.currentSentence?.words.indexOf(word), 1);
+    this.points.next( this.currentSentence?.original.startsWith(this.selectedWords.join(' ')) ? 1 : -1);
     this.success.next(this.isCurrentSentenceGuessed());
   }
 
