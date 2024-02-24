@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
@@ -8,6 +8,9 @@ import {MatAnchor, MatIconAnchor} from "@angular/material/button";
 import {SoundToggleComponent} from "./components/sound-toggle/sound-toggle.component";
 import {CustomMatIconRegistryService} from "./services/custom-mat-icon-registry.service";
 import {FeedbackService} from "./services/feedback.service";
+import {collection, collectionData, Firestore} from "@angular/fire/firestore";
+import {Observable} from "rxjs";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -26,18 +29,23 @@ import {FeedbackService} from "./services/feedback.service";
     RouterLink,
     RouterOutlet,
     SoundToggleComponent,
+    AsyncPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   @ViewChild('successSound', {static: true}) successSound!: ElementRef<HTMLAudioElement>;
+  firestore: Firestore = inject(Firestore);
+  scores$: Observable<any[]>;
   title = 'vuk';
 
   constructor(
     private customMatIconRegistry: CustomMatIconRegistryService,
     private feedback: FeedbackService
   ) {
+    const aCollection = collection(this.firestore, 'scores');
+    this.scores$ = collectionData(aCollection);
   }
 
   ngOnInit() {
