@@ -6,6 +6,8 @@ import {RandomWordFactoryService} from "../../services/random-word-factory.servi
 import {RandomSentenceFactoryService} from "../../services/random-sentence-factory.service";
 import {SpellingComponent} from "../spelling/spelling.component";
 import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
+import {AsyncPipe} from "@angular/common";
+import {MatIcon} from "@angular/material/icon";
 
 enum Stage {
   Start,
@@ -22,11 +24,13 @@ enum Type {
   selector: 'app-tournament',
   standalone: true,
   imports: [
+    AsyncPipe,
     MatButton,
     MatCard,
     MatCardActions,
     MatCardContent,
     MatCardTitle,
+    MatIcon,
     SentenceBuildingComponent,
     SpellingComponent,
   ],
@@ -48,5 +52,11 @@ export class TournamentComponent {
 
   start() {
     this.stage = Stage.Playing;
+  }
+
+  next() {
+    this.wordFactory.randomWord();
+    this.sentenceFactory.randomSentence();
+    this.type = randomElement([Type.Spelling, Type.SentenceBuilding]);
   }
 }

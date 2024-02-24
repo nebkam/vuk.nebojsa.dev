@@ -24,6 +24,14 @@
           }
         }
       </mat-card-content>
+      @if ((sentenceFactory.success$ | async) || (wordFactory.success$ | async)) {
+        <mat-card-actions>
+          <button mat-flat-button color="primary" class="w-100" (click)="next()">
+            Даље
+            <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+          </button>
+        </mat-card-actions>
+      }
     </mat-card>
   }
 }
