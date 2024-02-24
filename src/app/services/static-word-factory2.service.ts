@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Letter, SelectedLetter, WordFactory2} from "./word-factory2";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, filter, Observable, tap} from "rxjs";
 import WORDS from "../../assets/words/words.json";
 import {shuffle} from "../lib/array";
+import {FeedbackService} from "./feedback.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,14 @@ export class StaticWordFactory2Service implements WordFactory2 {
   word: string | null = null;
   wordIndex: number;
 
-  constructor() {
+  constructor(private feedback: FeedbackService) {
     this.allWords = WORDS;
     this.wordIndex = 0;
+    this.success$
+      .pipe(
+        filter(Boolean),
+        tap(() => this.feedback.success())
+      ).subscribe();
   }
 
   get total(): number {
