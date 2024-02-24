@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 # Sounds
-Success: https://freesound.org/people/grunz/sounds/109662/
+Success: https://freesound.org/people/jolup123/sounds/668791/
 
 # Favicon
 This favicon was generated using the following graphics from Twitter Twemoji:
