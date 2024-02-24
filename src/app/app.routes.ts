@@ -1,7 +1,6 @@
 import {Routes} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {GuessTheLetterComponent} from "./components/guess-the-letter/guess-the-letter.component";
-import {GuessTheWordComponent} from "./components/guess-the-word/guess-the-word.component";
 import {GuessTheSentenceComponent} from "./components/guess-the-sentence/guess-the-sentence.component";
 import {TournamentComponent} from "./components/tournament/tournament.component";
 import {GuessTheWord2Component} from "./components/guess-the-word2/guess-the-word2.component";
