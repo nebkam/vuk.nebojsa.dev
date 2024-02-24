@@ -1,6 +1,13 @@
 import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
-import {MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardTitle} from "@angular/material/card";
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardFooter,
+  MatCardSubtitle,
+  MatCardTitle
+} from "@angular/material/card";
 import {randomElement} from "../../lib/array";
 import {RandomWordFactoryService} from "../../services/random-word-factory.service";
 import {RandomSentenceFactoryService} from "../../services/random-sentence-factory.service";
@@ -30,11 +37,12 @@ enum Type {
     MatCard,
     MatCardActions,
     MatCardContent,
+    MatCardFooter,
+    MatCardSubtitle,
     MatCardTitle,
     MatIcon,
     SentenceBuildingComponent,
     SpellingComponent,
-    MatCardFooter,
   ],
   templateUrl: './tournament.component.html',
   styleUrl: './tournament.component.css'

@@ -14,29 +14,55 @@
   }
   @case (Stage.Playing) {
     <mat-card>
-      <mat-card-content>
-        @switch (type) {
-          @case (Type.Spelling) {
+      @switch (type) {
+        @case (Type.Spelling) {
+          <mat-card-content>
             <app-spelling [wordFactory]="wordFactory"></app-spelling>
+          </mat-card-content>
+          @if (wordFactory.success$|async) {
+            <mat-card-actions>
+              <button mat-flat-button class="w-100" (click)="end()">
+                <mat-icon class="exit">exit_to_app</mat-icon>
+                Изађи
+              </button>
+              <button mat-flat-button color="primary" class="w-100" (click)="next()">
+                Даље
+                <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+              </button>
+            </mat-card-actions>
           }
-          @case (Type.SentenceBuilding) {
+        }
+        @case (Type.SentenceBuilding) {
+          <mat-card-content>
             <app-sentence-building [sentenceFactory]="sentenceFactory"></app-sentence-building>
+          </mat-card-content>
+          @if (sentenceFactory.success$|async) {
+            <mat-card-actions>
+              <button mat-flat-button class="w-100" (click)="end()">
+                <mat-icon class="exit">exit_to_app</mat-icon>
+                Изађи
+              </button>
+              <button mat-flat-button color="primary" class="w-100" (click)="next()">
+                Даље
+                <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+              </button>
+            </mat-card-actions>
           }
         }
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-flat-button class="w-100" (click)="end()">
-          <mat-icon class="exit">exit_to_app</mat-icon>
-          Изађи
-        </button>
-        @if ((sentenceFactory.success$ | async) || (wordFactory.success$ | async)) {
-          <button mat-flat-button color="primary" class="w-100" (click)="next()">
-            Даље
-            <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
-          </button>
-        }
-      </mat-card-actions>
+      }
       <mat-card-footer>Поени: {{totalPoints}}</mat-card-footer>
+    </mat-card>
+  }
+  @case (Stage.End) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>
+          <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
+        </h1>
+        <h2 mat-card-subtitle>
+          Освојио си {{ totalPoints }} поена
+        </h2>
+      </mat-card-content>
     </mat-card>
   }
 }
