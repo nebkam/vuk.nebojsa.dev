@@ -22,7 +22,7 @@ export class SpellingComponent {
   @ViewChild('wordSound', {static: false}) wordSound!: ElementRef<HTMLAudioElement>;
   @Input() wordFactory!: WordFactory;
 
-  playWordSound() {
+  playSound() {
     // noinspection JSIgnoredPromiseFromCall
     this.wordSound.nativeElement.play();
   }

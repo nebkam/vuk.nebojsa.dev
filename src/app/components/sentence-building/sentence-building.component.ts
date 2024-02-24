@@ -22,7 +22,7 @@ export class SentenceBuildingComponent {
   @ViewChild('sentenceSound', {static: false}) sentenceSound!: ElementRef<HTMLAudioElement>;
   @Input() sentenceFactory!: SentenceFactory;
 
-  playSentenceSound() {
+  playSound() {
     // noinspection JSIgnoredPromiseFromCall
     this.sentenceSound.nativeElement.play();
   }
