@@ -27,6 +27,7 @@ export class RandomWordFactoryService implements WordFactory {
         filter(Boolean),
         tap(() => this.feedback.success())
       ).subscribe();
+    this.randomWord();
   }
 
   private isCurrentWordGuessed() {

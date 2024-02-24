@@ -27,6 +27,7 @@ export class RandomSentenceFactoryService implements SentenceFactory {
         filter(Boolean),
         tap(() => this.feedback.success())
       ).subscribe();
+    this.randomSentence();
   }
 
   deselectWord(word: string): void {

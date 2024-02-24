@@ -1,1 +1,29 @@
-<p>tournament works!</p>
+@switch (stage) {
+  @case (Stage.Start) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>Скупи поене</h1>
+        <p>
+          Скупи што више поена
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+  @case (Stage.Playing) {
+    <mat-card>
+      <mat-card-content>
+        @switch (type) {
+          @case (Type.Spelling) {
+            <app-spelling [wordFactory]="wordFactory"></app-spelling>
+          }
+          @case (Type.SentenceBuilding) {
+            <app-sentence-building [sentenceFactory]="sentenceFactory"></app-sentence-building>
+          }
+        }
+      </mat-card-content>
+    </mat-card>
+  }
+}
