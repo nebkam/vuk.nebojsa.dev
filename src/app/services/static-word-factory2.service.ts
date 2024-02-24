@@ -27,7 +27,13 @@ export class StaticWordFactory2Service implements WordFactory2 {
   }
 
   advance(): boolean {
-    return false;
+    if (this.wordIndex === this.allWords.length - 1) {
+      return false;
+    }
+    this.wordIndex++;
+    this.setWord();
+
+    return true;
   }
 
   deselect(selectedLetter:SelectedLetter, index: number): void {
@@ -39,16 +45,21 @@ export class StaticWordFactory2Service implements WordFactory2 {
   start(): void {
     shuffle(this.allWords);
     this.wordIndex = 0;
-    this.word = this.allWords[this.wordIndex];
-    this.letters = wordToLetters(this.word);
-    shuffle(this.letters);
-    this.success.next(false);
+    this.setWord();
   }
 
   select(letter: Letter, index: number): void {
     letter.selected = true;
     this.selectedLetters.push({value: letter.value, index});
     this.success.next(this.isCurrentWordGuessed());
+  }
+
+  private setWord() {
+    this.word = this.allWords[this.wordIndex];
+    this.letters = wordToLetters(this.word);
+    shuffle(this.letters);
+    this.selectedLetters = [];
+    this.success.next(false);
   }
 
   private isCurrentWordGuessed() {

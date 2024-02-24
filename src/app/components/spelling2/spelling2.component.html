@@ -6,7 +6,7 @@
   </div>
 
   <div class="letter-list">
-    @for (selectedLetter of wordFactory.selectedLetters; track selectedLetter.value) {
+    @for (selectedLetter of wordFactory.selectedLetters; track $index) {
       <button
         mat-raised-button
         color="accent"
@@ -20,7 +20,7 @@
   <mat-divider></mat-divider>
 
   <div class="letter-list">
-    @for (letter of wordFactory.letters; track letter.value) {
+    @for (letter of wordFactory.letters; track $index) {
       <button
         (click)="wordFactory.select(letter, $index)"
         [disabled]="letter.selected"
