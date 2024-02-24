@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {
   MatCard,
@@ -15,7 +15,10 @@ import {SpellingComponent} from "../spelling/spelling.component";
 import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
 import {AsyncPipe} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
-import {merge} from "rxjs";
+import {merge, Observable} from "rxjs";
+import {MatDivider} from "@angular/material/divider";
+import {collection, collectionData, Firestore} from "@angular/fire/firestore";
+import {MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTextColumn} from "@angular/material/table";
 
 enum Stage {
   Start,
@@ -40,7 +43,14 @@ enum Type {
     MatCardFooter,
     MatCardSubtitle,
     MatCardTitle,
+    MatDivider,
+    MatHeaderRow,
+    MatHeaderRowDef,
     MatIcon,
+    MatRow,
+    MatRowDef,
+    MatTable,
+    MatTextColumn,
     SentenceBuildingComponent,
     SpellingComponent,
   ],
@@ -51,6 +61,9 @@ export class TournamentComponent {
   Stage = Stage;
   Type = Type;
 
+  columnsToDisplay = ['name', 'points'];
+  firestore: Firestore = inject(Firestore);
+  scores$: Observable<any[]>;
   stage = Stage.Start;
   totalPoints = 0;
   type = randomElement([Type.Spelling, Type.SentenceBuilding]);
@@ -66,6 +79,9 @@ export class TournamentComponent {
       }
     });
     //TODO unsub
+
+    const aCollection = collection(this.firestore, 'scores');
+    this.scores$ = collectionData(aCollection);
   }
 
   start() {

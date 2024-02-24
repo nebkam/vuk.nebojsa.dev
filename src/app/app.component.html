@@ -16,12 +16,6 @@
       <span class="spacer"></span>
       <app-sound-toggle></app-sound-toggle>
     </mat-toolbar>
-    <ul>
-      @for(score of scores$ | async; track score.id) {
-        <li>{{score.name}}: {{score.points}}</li>
-      }
-    </ul>
-
     <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>

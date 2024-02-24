@@ -50,7 +50,7 @@
           }
         }
       }
-      <mat-card-footer>Поени: {{totalPoints}}</mat-card-footer>
+      <mat-card-footer>Поени: {{ totalPoints }}</mat-card-footer>
     </mat-card>
   }
   @case (Stage.End) {
@@ -62,6 +62,13 @@
         <h2 mat-card-subtitle>
           Освојио си {{ totalPoints }} поена
         </h2>
+        <mat-divider></mat-divider>
+        <table mat-table [dataSource]="scores$">
+          <mat-text-column name="name"></mat-text-column>
+          <mat-text-column name="points"></mat-text-column>
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        </table>
       </mat-card-content>
     </mat-card>
   }
