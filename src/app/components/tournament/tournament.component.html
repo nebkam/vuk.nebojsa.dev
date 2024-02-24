@@ -53,7 +53,7 @@
       <mat-card-footer>Поени: {{ totalPoints }}</mat-card-footer>
     </mat-card>
   }
-  @case (Stage.End) {
+  @case (Stage.EnterScore) {
     <mat-card>
       <mat-card-content>
         <h1 mat-card-title>
@@ -62,6 +62,29 @@
         <h2 mat-card-subtitle>
           Освојио си {{ totalPoints }} поена
         </h2>
+        <mat-form-field class="w-100">
+          <mat-label>Име</mat-label>
+          <input id="name" [formControl]="nameFormControl" matInput required>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-flat-button
+          color="primary"
+          class="w-100"
+          (click)="saveScore()"
+          [disabled]="nameFormControl.invalid">
+          Сачувај резултат
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  }
+  @case (Stage.ShowHighScores) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>
+          <mat-icon>emoji_events</mat-icon>&nbsp;Рекорди
+        </h1>
         <mat-divider></mat-divider>
         <table mat-table [dataSource]="scores$">
           <mat-text-column name="name"></mat-text-column>

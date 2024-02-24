@@ -17,13 +17,24 @@ import {AsyncPipe} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {merge, Observable} from "rxjs";
 import {MatDivider} from "@angular/material/divider";
-import {collection, collectionData, Firestore} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, Firestore} from "@angular/fire/firestore";
 import {MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTextColumn} from "@angular/material/table";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+
+interface UserScore {
+  name: string | null;
+  points: number;
+  when: Date;
+}
 
 enum Stage {
   Start,
   Playing,
-  End
+  EnterScore,
+  ShowHighScores
 }
 
 enum Type {
@@ -44,13 +55,17 @@ enum Type {
     MatCardSubtitle,
     MatCardTitle,
     MatDivider,
+    MatFormField,
     MatHeaderRow,
     MatHeaderRowDef,
     MatIcon,
+    MatInput,
+    MatLabel,
     MatRow,
     MatRowDef,
     MatTable,
     MatTextColumn,
+    ReactiveFormsModule,
     SentenceBuildingComponent,
     SpellingComponent,
   ],
@@ -63,14 +78,16 @@ export class TournamentComponent {
 
   columnsToDisplay = ['name', 'points'];
   firestore: Firestore = inject(Firestore);
-  scores$: Observable<any[]>;
+  nameFormControl = new FormControl('');
+  scores$: Observable<UserScore[]>;
   stage = Stage.Start;
   totalPoints = 0;
   type = randomElement([Type.Spelling, Type.SentenceBuilding]);
 
   constructor(
     public wordFactory: RandomWordFactoryService,
-    public sentenceFactory: RandomSentenceFactoryService
+    public sentenceFactory: RandomSentenceFactoryService,
+    private snackBar: MatSnackBar
   ) {
     merge(this.sentenceFactory.points$, this.wordFactory.points$).subscribe(points => {
       this.totalPoints += points;
@@ -80,8 +97,8 @@ export class TournamentComponent {
     });
     //TODO unsub
 
-    const aCollection = collection(this.firestore, 'scores');
-    this.scores$ = collectionData(aCollection);
+    const collectionReference = collection(this.firestore, 'scores');
+    this.scores$ = collectionData(collectionReference) as Observable<UserScore[]>;
   }
 
   start() {
@@ -101,6 +118,20 @@ export class TournamentComponent {
   }
 
   end() {
-    this.stage = Stage.End;
+    if (this.totalPoints > 0) {
+      this.stage = Stage.EnterScore;
+    } else {
+      this.stage = Stage.ShowHighScores;
+    }
+  }
+
+  saveScore() {
+    const score: UserScore = {name: this.nameFormControl.value, points: this.totalPoints, when: new Date()};
+    const collectionReference = collection(this.firestore, 'scores');
+    addDoc(collectionReference, score)
+      .then(() => {
+        this.stage = Stage.ShowHighScores;
+        this.snackBar.open('Сачувано!', undefined, {duration: 800});
+      });
   }
 }
