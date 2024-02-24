@@ -17,6 +17,14 @@
       <mat-card-content>
         <app-spelling2 [wordFactory]="wordFactory"></app-spelling2>
       </mat-card-content>
+      @if (wordFactory.success$ | async) {
+        <mat-card-actions>
+          <button mat-flat-button color="primary" class="w-100" (click)="advance()">
+            Даље
+            <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+          </button>
+        </mat-card-actions>
+      }
     </mat-card>
   }
   @case (Stage.End) {

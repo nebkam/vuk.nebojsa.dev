@@ -33,6 +33,7 @@ export class StaticWordFactory2Service implements WordFactory2 {
   deselect(selectedLetter:SelectedLetter, index: number): void {
     this.selectedLetters.splice(index, 1);
     this.letters[selectedLetter.index].selected = false;
+    this.success.next(false);
   }
 
   start(): void {
@@ -41,11 +42,17 @@ export class StaticWordFactory2Service implements WordFactory2 {
     this.word = this.allWords[this.wordIndex];
     this.letters = wordToLetters(this.word);
     shuffle(this.letters);
+    this.success.next(false);
   }
 
   select(letter: Letter, index: number): void {
     letter.selected = true;
     this.selectedLetters.push({value: letter.value, index});
+    this.success.next(this.isCurrentWordGuessed());
+  }
+
+  private isCurrentWordGuessed() {
+    return this.word === this.selectedLetters.map(selectedLetter => selectedLetter.value).join('');
   }
 }
 
