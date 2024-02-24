@@ -10,12 +10,12 @@ import {shuffle} from "../lib/array";
 export class StaticWordFactory2Service implements WordFactory2 {
   private readonly allWords: string[];
   private success = new BehaviorSubject(false);
-  private wordIndex: number;
 
   letters: Letter[] = [];
   selectedLetters: SelectedLetter[] = [];
   success$: Observable<boolean> = this.success.asObservable();
   word: string | null = null;
+  wordIndex: number;
 
   constructor() {
     this.allWords = WORDS;

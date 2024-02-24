@@ -25,6 +25,9 @@
           </button>
         </mat-card-actions>
       }
+      <mat-card-footer>
+        {{ wordFactory.wordIndex + 1 }} / {{ wordFactory.total }}
+      </mat-card-footer>
     </mat-card>
   }
   @case (Stage.End) {
