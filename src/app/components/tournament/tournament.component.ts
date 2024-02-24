@@ -105,6 +105,10 @@ export class TournamentComponent {
     this.stage = Stage.Playing;
   }
 
+  showHighScores() {
+    this.stage = Stage.ShowHighScores;
+  }
+
   next() {
     this.type = randomElement([Type.Spelling, Type.SentenceBuilding]);
     switch (this.type) {
