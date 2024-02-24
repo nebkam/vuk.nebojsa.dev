@@ -4,6 +4,7 @@ import {GuessTheLetterComponent} from "./components/guess-the-letter/guess-the-l
 import {GuessTheWordComponent} from "./components/guess-the-word/guess-the-word.component";
 import {GuessTheSentenceComponent} from "./components/guess-the-sentence/guess-the-sentence.component";
 import {TournamentComponent} from "./components/tournament/tournament.component";
+import {GuessTheWord2Component} from "./components/guess-the-word2/guess-the-word2.component";
 
 export const routes: Routes = [
   // BC
@@ -16,7 +17,7 @@ export const routes: Routes = [
   }, {
     path: 'slozi-recenicu', component: GuessTheSentenceComponent
   }, {
-    path: 'slozi-rec', component: GuessTheWordComponent
+    path: 'slozi-rec', component: GuessTheWord2Component
   }, {
     path: 'takmicenje', component: TournamentComponent
   }, {

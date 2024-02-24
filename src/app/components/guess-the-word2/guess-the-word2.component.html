@@ -1,0 +1,34 @@
+@switch (stage) {
+  @case (Stage.Start) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>Која је то реч?</h1>
+        <p>
+          Послушај снимак и сложи реч од датих слова
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+  @case (Stage.Playing) {
+    <mat-card>
+      <mat-card-content>
+        <app-spelling2></app-spelling2>
+      </mat-card-content>
+    </mat-card>
+  }
+  @case (Stage.End) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>
+          <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
+        </h1>
+        <h2 mat-card-subtitle>
+          Написао си свих {{ wordFactory.total }} речи
+        </h2>
+      </mat-card-content>
+    </mat-card>
+  }
+}
