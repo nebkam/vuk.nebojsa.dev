@@ -9,8 +9,6 @@ import {
   MatCardTitle
 } from "@angular/material/card";
 import {randomElement} from "../../lib/array";
-import {RandomSentenceFactoryService} from "../../services/random-sentence-factory.service";
-import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
 import {AsyncPipe} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {merge, Observable} from "rxjs";
@@ -23,6 +21,8 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Spelling2Component} from "../spelling2/spelling2.component";
 import {RandomWordFactory2Service} from "../../services/random-word-factory2.service";
+import {RandomSentenceFactory2Service} from "../../services/random-sentence-factory2.service";
+import {SentenceBuilding2Component} from "../sentence-building2/sentence-building2.component";
 
 interface UserScore {
   name: string | null;
@@ -66,7 +66,7 @@ enum Type {
     MatTable,
     MatTextColumn,
     ReactiveFormsModule,
-    SentenceBuildingComponent,
+    SentenceBuilding2Component,
     Spelling2Component,
   ],
   templateUrl: './tournament.component.html',
@@ -86,7 +86,7 @@ export class TournamentComponent {
 
   constructor(
     public wordFactory: RandomWordFactory2Service,
-    public sentenceFactory: RandomSentenceFactoryService,
+    public sentenceFactory: RandomSentenceFactory2Service,
     private snackBar: MatSnackBar
   ) {
     merge(this.sentenceFactory.points$, this.wordFactory.points$).subscribe(points => {
@@ -116,7 +116,7 @@ export class TournamentComponent {
         this.wordFactory.advance();
         break;
       case Type.SentenceBuilding:
-        this.sentenceFactory.randomSentence();
+        this.sentenceFactory.advance();
         break;
     }
   }

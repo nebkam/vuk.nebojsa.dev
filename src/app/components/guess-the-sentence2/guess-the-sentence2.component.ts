@@ -12,7 +12,6 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {SentenceBuilding2Component} from "../sentence-building2/sentence-building2.component";
 import {StaticSentenceFactory2Service} from "../../services/static-sentence-factory2.service";
-import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
 
 enum Stage {
   Start,
@@ -34,7 +33,6 @@ enum Stage {
     MatCardTitle,
     MatIcon,
     SentenceBuilding2Component,
-    SentenceBuildingComponent,
   ],
   templateUrl: './guess-the-sentence2.component.html',
   styleUrl: './guess-the-sentence2.component.css'

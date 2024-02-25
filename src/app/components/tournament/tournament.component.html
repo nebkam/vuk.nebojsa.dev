@@ -41,7 +41,7 @@
         }
         @case (Type.SentenceBuilding) {
           <mat-card-content>
-            <app-sentence-building [sentenceFactory]="sentenceFactory"></app-sentence-building>
+            <app-sentence-building2 [sentenceFactory]="sentenceFactory"></app-sentence-building2>
           </mat-card-content>
           @if (sentenceFactory.success$|async) {
             <mat-card-actions>
