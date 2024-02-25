@@ -10,7 +10,7 @@ import {
   MatCardTitle
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
-import {Spelling2Component} from "../spelling2/spelling2.component";
+import {SpellingComponent} from "../spelling/spelling.component";
 import {StaticWordFactoryService} from "../../services/static-word-factory.service";
 
 enum Stage {
@@ -20,7 +20,7 @@ enum Stage {
 }
 
 @Component({
-  selector: 'app-guess-the-word2',
+  selector: 'app-guess-the-word',
   standalone: true,
   imports: [
     AsyncPipe,
@@ -32,12 +32,12 @@ enum Stage {
     MatCardSubtitle,
     MatCardTitle,
     MatIcon,
-    Spelling2Component,
+    SpellingComponent,
   ],
-  templateUrl: './guess-the-word2.component.html',
-  styleUrl: './guess-the-word2.component.css'
+  templateUrl: './guess-the-word.component.html',
+  styleUrl: './guess-the-word.component.css'
 })
-export class GuessTheWord2Component {
+export class GuessTheWordComponent {
   Stage = Stage;
   stage = Stage.Start;
 

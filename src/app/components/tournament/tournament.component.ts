@@ -19,10 +19,10 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Spelling2Component} from "../spelling2/spelling2.component";
+import {SpellingComponent} from "../spelling/spelling.component";
 import {RandomWordFactoryService} from "../../services/random-word-factory.service";
 import {RandomSentenceFactoryService} from "../../services/random-sentence-factory.service";
-import {SentenceBuilding2Component} from "../sentence-building2/sentence-building2.component";
+import {SentenceBuildingComponent} from "../sentence-building/sentence-building.component";
 
 interface UserScore {
   name: string | null;
@@ -66,8 +66,8 @@ enum Type {
     MatTable,
     MatTextColumn,
     ReactiveFormsModule,
-    SentenceBuilding2Component,
-    Spelling2Component,
+    SentenceBuildingComponent,
+    SpellingComponent,
   ],
   templateUrl: './tournament.component.html',
   styleUrl: './tournament.component.css'

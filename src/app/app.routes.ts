@@ -2,8 +2,8 @@ import {Routes} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {GuessTheLetterComponent} from "./components/guess-the-letter/guess-the-letter.component";
 import {TournamentComponent} from "./components/tournament/tournament.component";
-import {GuessTheWord2Component} from "./components/guess-the-word2/guess-the-word2.component";
-import {GuessTheSentence2Component} from "./components/guess-the-sentence2/guess-the-sentence2.component";
+import {GuessTheWordComponent} from "./components/guess-the-word/guess-the-word.component";
+import {GuessTheSentenceComponent} from "./components/guess-the-sentence/guess-the-sentence.component";
 
 export const routes: Routes = [
   // BC
@@ -14,9 +14,9 @@ export const routes: Routes = [
   {
     path: 'pogodi-slovo', component: GuessTheLetterComponent
   }, {
-    path: 'slozi-recenicu', component: GuessTheSentence2Component
+    path: 'slozi-recenicu', component: GuessTheSentenceComponent
   }, {
-    path: 'slozi-rec', component: GuessTheWord2Component
+    path: 'slozi-rec', component: GuessTheWordComponent
   }, {
     path: 'takmicenje', component: TournamentComponent
   }, {

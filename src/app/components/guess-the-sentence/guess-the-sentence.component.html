@@ -15,7 +15,7 @@
   @case (Stage.Playing) {
     <mat-card>
       <mat-card-content>
-        <app-sentence-building2 [sentenceFactory]="sentenceFactory"></app-sentence-building2>
+        <app-sentence-building [sentenceFactory]="sentenceFactory"></app-sentence-building>
       </mat-card-content>
       @if (sentenceFactory.success$ | async) {
         <mat-card-actions>

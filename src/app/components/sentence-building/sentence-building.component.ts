@@ -5,7 +5,7 @@ import {MatIcon} from "@angular/material/icon";
 import {SentenceFactory} from "../../services/sentence-factory";
 
 @Component({
-  selector: 'app-sentence-building2',
+  selector: 'app-sentence-building',
   standalone: true,
   imports: [
     MatButton,
@@ -13,10 +13,10 @@ import {SentenceFactory} from "../../services/sentence-factory";
     MatFabButton,
     MatIcon,
   ],
-  templateUrl: './sentence-building2.component.html',
-  styleUrl: './sentence-building2.component.css'
+  templateUrl: './sentence-building.component.html',
+  styleUrl: './sentence-building.component.css'
 })
-export class SentenceBuilding2Component {
+export class SentenceBuildingComponent {
   @ViewChild('sentenceSound', {static: false}) sentenceSound!: ElementRef<HTMLAudioElement>;
   @Input() sentenceFactory!: SentenceFactory;
 

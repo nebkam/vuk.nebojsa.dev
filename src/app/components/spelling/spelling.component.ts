@@ -6,7 +6,7 @@ import {NgForOf} from "@angular/common";
 import {WordFactory} from "../../services/word-factory";
 
 @Component({
-  selector: 'app-spelling2',
+  selector: 'app-spelling',
   standalone: true,
   imports: [
     MatButton,
@@ -15,10 +15,10 @@ import {WordFactory} from "../../services/word-factory";
     MatIcon,
     NgForOf,
   ],
-  templateUrl: './spelling2.component.html',
-  styleUrl: './spelling2.component.css'
+  templateUrl: './spelling.component.html',
+  styleUrl: './spelling.component.css'
 })
-export class Spelling2Component {
+export class SpellingComponent {
   @ViewChild('wordSound', {static: false}) wordSound!: ElementRef<HTMLAudioElement>;
   @Input() wordFactory!: WordFactory;
 

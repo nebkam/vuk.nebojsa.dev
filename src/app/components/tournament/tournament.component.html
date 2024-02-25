@@ -24,7 +24,7 @@
       @switch (type) {
         @case (Type.Spelling) {
           <mat-card-content>
-            <app-spelling2 [wordFactory]="wordFactory"></app-spelling2>
+            <app-spelling [wordFactory]="wordFactory"></app-spelling>
           </mat-card-content>
           @if (wordFactory.success$|async) {
             <mat-card-actions>
@@ -41,7 +41,7 @@
         }
         @case (Type.SentenceBuilding) {
           <mat-card-content>
-            <app-sentence-building2 [sentenceFactory]="sentenceFactory"></app-sentence-building2>
+            <app-sentence-building [sentenceFactory]="sentenceFactory"></app-sentence-building>
           </mat-card-content>
           @if (sentenceFactory.success$|async) {
             <mat-card-actions>
