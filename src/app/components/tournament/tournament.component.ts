@@ -20,8 +20,8 @@ import {MatInput} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Spelling2Component} from "../spelling2/spelling2.component";
-import {RandomWordFactory2Service} from "../../services/random-word-factory2.service";
-import {RandomSentenceFactory2Service} from "../../services/random-sentence-factory2.service";
+import {RandomWordFactoryService} from "../../services/random-word-factory.service";
+import {RandomSentenceFactoryService} from "../../services/random-sentence-factory.service";
 import {SentenceBuilding2Component} from "../sentence-building2/sentence-building2.component";
 
 interface UserScore {
@@ -85,8 +85,8 @@ export class TournamentComponent {
   type = randomElement([Type.Spelling, Type.SentenceBuilding]);
 
   constructor(
-    public wordFactory: RandomWordFactory2Service,
-    public sentenceFactory: RandomSentenceFactory2Service,
+    public wordFactory: RandomWordFactoryService,
+    public sentenceFactory: RandomSentenceFactoryService,
     private snackBar: MatSnackBar
   ) {
     merge(this.sentenceFactory.points$, this.wordFactory.points$).subscribe(points => {

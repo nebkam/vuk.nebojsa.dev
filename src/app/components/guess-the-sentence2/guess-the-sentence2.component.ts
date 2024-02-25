@@ -11,7 +11,7 @@ import {
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {SentenceBuilding2Component} from "../sentence-building2/sentence-building2.component";
-import {StaticSentenceFactory2Service} from "../../services/static-sentence-factory2.service";
+import {StaticSentenceFactoryService} from "../../services/static-sentence-factory.service";
 
 enum Stage {
   Start,
@@ -41,7 +41,7 @@ export class GuessTheSentence2Component {
   Stage = Stage;
   stage = Stage.Start;
 
-  constructor(public sentenceFactory: StaticSentenceFactory2Service) {
+  constructor(public sentenceFactory: StaticSentenceFactoryService) {
   }
 
   advance() {

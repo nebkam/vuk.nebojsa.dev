@@ -3,7 +3,7 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatDivider} from "@angular/material/divider";
 import {MatIcon} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
-import {WordFactory2} from "../../services/word-factory2";
+import {WordFactory} from "../../services/word-factory";
 
 @Component({
   selector: 'app-spelling2',
@@ -20,7 +20,7 @@ import {WordFactory2} from "../../services/word-factory2";
 })
 export class Spelling2Component {
   @ViewChild('wordSound', {static: false}) wordSound!: ElementRef<HTMLAudioElement>;
-  @Input() wordFactory!: WordFactory2;
+  @Input() wordFactory!: WordFactory;
 
   playSound() {
     // noinspection JSIgnoredPromiseFromCall

@@ -10,7 +10,7 @@ export interface SelectedWord {
   index: number;
 }
 
-export interface SentenceFactory2 {
+export interface SentenceFactory {
   selectedWords: SelectedWord[];
   sentence: string | null;
   success$: Observable<boolean>;

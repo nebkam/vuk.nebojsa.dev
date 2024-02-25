@@ -1,5 +1,5 @@
-import {Letter} from "../services/word-factory2";
-import {Word} from "../services/sentence-factory2";
+import {Letter} from "../services/word-factory";
+import {Word} from "../services/sentence-factory";
 
 export function sentenceToWords(sentence: string): Word[] {
   return sentence.split(' ').map(word => ({

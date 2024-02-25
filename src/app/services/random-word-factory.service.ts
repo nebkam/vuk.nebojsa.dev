@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Letter, SelectedLetter, WordFactory2} from "./word-factory2";
+import {Letter, SelectedLetter, WordFactory} from "./word-factory";
 import {BehaviorSubject, filter, Observable, tap} from "rxjs";
 import {FeedbackService} from "./feedback.service";
 import WORDS from "../../assets/words/words.json";
@@ -9,7 +9,7 @@ import {wordToLetters} from "../lib/words";
 @Injectable({
   providedIn: 'root'
 })
-export class RandomWordFactory2Service implements WordFactory2 {
+export class RandomWordFactoryService implements WordFactory {
   private readonly allWords: string[];
   private points = new BehaviorSubject(0);
   private success = new BehaviorSubject(false);

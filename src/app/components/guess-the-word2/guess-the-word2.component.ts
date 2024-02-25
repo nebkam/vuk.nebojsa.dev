@@ -11,7 +11,7 @@ import {
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {Spelling2Component} from "../spelling2/spelling2.component";
-import {StaticWordFactory2Service} from "../../services/static-word-factory2.service";
+import {StaticWordFactoryService} from "../../services/static-word-factory.service";
 
 enum Stage {
   Start,
@@ -42,7 +42,7 @@ export class GuessTheWord2Component {
   stage = Stage.Start;
 
   constructor(
-    public wordFactory: StaticWordFactory2Service
+    public wordFactory: StaticWordFactoryService
   ) {
   }
 

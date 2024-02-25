@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SelectedWord, SentenceFactory2, Word} from "./sentence-factory2";
+import {SelectedWord, SentenceFactory, Word} from "./sentence-factory";
 import {BehaviorSubject, filter, Observable, tap} from "rxjs";
 import {FeedbackService} from "./feedback.service";
 import SENTENCES from "../../assets/sentences/sentences.json";
@@ -9,7 +9,7 @@ import {shuffle} from "../lib/array";
 @Injectable({
   providedIn: 'root'
 })
-export class RandomSentenceFactory2Service implements SentenceFactory2 {
+export class RandomSentenceFactoryService implements SentenceFactory {
   private readonly allSentences: string[];
   private points = new BehaviorSubject(0);
   private success = new BehaviorSubject(false);

@@ -2,7 +2,7 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatDivider} from "@angular/material/divider";
 import {MatIcon} from "@angular/material/icon";
-import {SentenceFactory2} from "../../services/sentence-factory2";
+import {SentenceFactory} from "../../services/sentence-factory";
 
 @Component({
   selector: 'app-sentence-building2',
@@ -18,7 +18,7 @@ import {SentenceFactory2} from "../../services/sentence-factory2";
 })
 export class SentenceBuilding2Component {
   @ViewChild('sentenceSound', {static: false}) sentenceSound!: ElementRef<HTMLAudioElement>;
-  @Input() sentenceFactory!: SentenceFactory2;
+  @Input() sentenceFactory!: SentenceFactory;
 
   playSound() {
     // noinspection JSIgnoredPromiseFromCall

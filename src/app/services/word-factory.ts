@@ -10,7 +10,7 @@ export interface SelectedLetter {
   index: number;
 }
 
-export interface WordFactory2 {
+export interface WordFactory {
   letters: Letter[];
   selectedLetters: SelectedLetter[];
   success$: Observable<boolean>;
