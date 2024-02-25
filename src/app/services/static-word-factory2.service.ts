@@ -43,7 +43,7 @@ export class StaticWordFactory2Service implements WordFactory2 {
     return true;
   }
 
-  deselect(selectedLetter:SelectedLetter, index: number): void {
+  deselect(selectedLetter: SelectedLetter, index: number): void {
     this.selectedLetters.splice(index, 1);
     this.letters[selectedLetter.index].selected = false;
     this.success.next(false);

@@ -1,0 +1,35 @@
+@if (sentenceFactory.sentence) {
+  <div class="playback">
+    <button mat-fab (click)="playSound()">
+      <mat-icon>volume_up</mat-icon>
+    </button>
+  </div>
+
+  <div class="word-list">
+    @for (selectedWord of sentenceFactory.selectedWords; track $index) {
+      <button
+        mat-raised-button
+        color="accent"
+        class="word-button"
+        (click)="sentenceFactory.deselect(selectedWord, $index)">
+        {{ selectedWord.value }}
+      </button>
+    }
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="word-list">
+    @for (word of sentenceFactory.words; track $index) {
+      <button
+        (click)="sentenceFactory.select(word, $index)"
+        [disabled]="word.selected"
+        mat-raised-button
+        class="word-button">
+        {{ word.value }}
+      </button>
+    }
+  </div>
+
+  <audio #sentenceSound src="/assets/sentences/mp3/{{sentenceFactory.sentence}}.mp3" autoplay></audio>
+}

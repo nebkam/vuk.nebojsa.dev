@@ -1,0 +1,45 @@
+@switch (stage) {
+  @case (Stage.Start) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>Сложи реченицу</h1>
+        <p>
+          Послушај снимак и сложи речи по редоследу
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" class="w-100" (click)="start()">Почни</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+  @case (Stage.Playing) {
+    <mat-card>
+      <mat-card-content>
+        <app-sentence-building2 [sentenceFactory]="sentenceFactory"></app-sentence-building2>
+      </mat-card-content>
+      @if (sentenceFactory.success$ | async) {
+        <mat-card-actions>
+          <button mat-flat-button color="primary" class="w-100" (click)="advance()">
+            Даље
+            <mat-icon iconPositionEnd>keyboard_arrow_right</mat-icon>
+          </button>
+        </mat-card-actions>
+      }
+      <mat-card-footer>
+        {{ sentenceFactory.sentenceIndex + 1 }} / {{ sentenceFactory.total }}
+      </mat-card-footer>
+    </mat-card>
+  }
+  @case (Stage.End) {
+    <mat-card>
+      <mat-card-content>
+        <h1 mat-card-title>
+          <mat-icon>emoji_events</mat-icon>&nbsp;Браво!
+        </h1>
+        <h2 mat-card-subtitle>
+          Погодио си {{ sentenceFactory.total }} реченица
+        </h2>
+      </mat-card-content>
+    </mat-card>
+  }
+}

@@ -1,0 +1,16 @@
+.playback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 112px;
+}
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.word-button {
+  margin: .5em
+}
+.mdc-button:disabled {
+  color: transparent;
+}
