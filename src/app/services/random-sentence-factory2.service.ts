@@ -3,9 +3,8 @@ import {SelectedWord, SentenceFactory2, Word} from "./sentence-factory2";
 import {BehaviorSubject, filter, Observable, tap} from "rxjs";
 import {FeedbackService} from "./feedback.service";
 import SENTENCES from "../../assets/sentences/sentences.json";
-import {sentenceToWords, wordToLetters} from "../lib/words";
+import {sentenceToWords} from "../lib/words";
 import {shuffle} from "../lib/array";
-import {Letter, SelectedLetter} from "./word-factory2";
 
 @Injectable({
   providedIn: 'root'
